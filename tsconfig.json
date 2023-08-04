@@ -19,7 +19,8 @@
     "declarationMap": true,
     "baseUrl": ".",
     "paths": {
-      "arc-carousel": ["src/index.ts"]
+      "arc-carousel": ["src/index.ts"],
+      "@/*": ["src/*"]
     },
     "typeRoots": ["node_modules/@types", "src/index.d.ts"]
   },
