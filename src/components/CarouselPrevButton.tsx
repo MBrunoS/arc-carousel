@@ -29,3 +29,5 @@ export const CarouselPrevButton = forwardRef<HTMLButtonElement, ButtonProps>(
     )
   },
 )
+
+CarouselPrevButton.displayName = 'CarouselPrevButton'

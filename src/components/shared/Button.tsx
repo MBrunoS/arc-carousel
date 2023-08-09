@@ -9,7 +9,7 @@ export const carouselButtonVariants = cva(
     variants: {
       variant: {
         default:
-          'text-gray-400 border border-gray-400 hover:text-gray-600 hover:border-gray-600 focus:outline-none focus:text-gray-600 focus:border-gray-600',
+          'text-indigo-400 border border-indigo-400 hover:text-indigo-600 hover:border-indigo-600 focus:outline-none focus:text-indigo-600 focus:border-indigo-600',
       },
       size: {
         small: 'w-10 h-10',
@@ -40,3 +40,5 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
     )
   },
 )
+
+Button.displayName = 'Button'

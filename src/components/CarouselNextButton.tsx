@@ -29,3 +29,5 @@ export const CarouselNextButton = forwardRef<HTMLButtonElement, ButtonProps>(
     )
   },
 )
+
+CarouselNextButton.displayName = 'CarouselNextButton'
