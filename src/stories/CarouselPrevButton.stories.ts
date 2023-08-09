@@ -14,6 +14,9 @@ const meta = {
       },
     },
   },
+  parameters: {
+    layout: 'centered',
+  },
 } satisfies Meta<typeof Carousel.PrevButton>
 
 export default meta

@@ -14,6 +14,9 @@ const meta = {
       },
     },
   },
+  parameters: {
+    layout: 'centered',
+  },
 } satisfies Meta<typeof Carousel.NextButton>
 
 export default meta

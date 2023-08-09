@@ -5,6 +5,9 @@ const meta = {
   title: 'Arc Carousel/Components/Root',
   component: Carousel.Root,
   tags: ['autodocs'],
+  parameters: {
+    layout: 'centered',
+  },
 } satisfies Meta<typeof Carousel.Root>
 
 export default meta
