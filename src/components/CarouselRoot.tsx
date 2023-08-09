@@ -20,16 +20,17 @@ export const carouselRootVariants = cva('flex overflow-x-auto', {
 export interface CarouselRootProps
   extends HTMLAttributes<HTMLDivElement>,
     VariantProps<typeof carouselRootVariants> {
+  slidesPerView?: number
   asChild?: boolean
 }
 
 export const CarouselRoot = forwardRef<HTMLDivElement, CarouselRootProps>(
-  ({ variant, className, children, asChild = false, ...props }, ref) => {
+  ({ slidesPerView, variant, className, children, asChild = false, ...props }, ref) => {
     const Comp = asChild ? Slot : 'div'
     const slideCount = React.Children.count(children)
 
     return (
-      <CarouselProvider slideCount={slideCount}>
+      <CarouselProvider slideCount={slideCount} slidesPerView={slidesPerView}>
         <Comp className={cn(carouselRootVariants({ variant, className }))} ref={ref} {...props}>
           {children}
         </Comp>
