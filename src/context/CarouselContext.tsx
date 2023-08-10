@@ -1,9 +1,9 @@
-import React, { createContext, useState } from 'react'
+import React, { createContext, useEffect, useState } from 'react'
 
 interface CarouselContextType {
   variant?: 'default' | 'full' | 'vertical' | null
-  currentSlide: number
-  setCurrentSlide: React.Dispatch<React.SetStateAction<number>>
+  currentView: number
+  setCurrentView: React.Dispatch<React.SetStateAction<number>>
   nextSlide: () => void
   prevSlide: () => void
   slideCount: number
@@ -16,28 +16,36 @@ export interface CarouselProviderProps {
   children: React.ReactNode
   slideCount: number
   slidesPerView?: number
+  slideContainerRef?: React.RefObject<HTMLDivElement>
 }
 
 export const CarouselProvider = ({
   children,
   slideCount,
   slidesPerView = 1,
+  slideContainerRef,
 }: CarouselProviderProps) => {
-  const [currentSlide, setCurrentSlide] = useState(0)
+  const [currentView, setCurrentView] = useState(0)
 
   const nextSlide = () => {
-    setCurrentSlide((prev) => (prev + 1) % slideCount)
+    setCurrentView((prev) => (prev + 1) % slideCount)
   }
 
   const prevSlide = () => {
-    setCurrentSlide((prev) => (prev - 1 + slideCount) % slideCount)
+    setCurrentView((prev) => (prev - 1 + slideCount) % slideCount)
   }
+
+  useEffect(() => {
+    if (slideContainerRef?.current) {
+      slideContainerRef.current.scrollLeft = currentView * slideContainerRef.current.offsetWidth
+    }
+  }, [currentView])
 
   return (
     <CarouselContext.Provider
       value={{
-        currentSlide,
-        setCurrentSlide,
+        currentView,
+        setCurrentView,
         nextSlide,
         prevSlide,
         slideCount,

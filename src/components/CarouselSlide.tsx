@@ -1,6 +1,7 @@
+import { CarouselContext } from '@/context/CarouselContext'
 import { cn } from '@/lib/utils'
 import { Slot } from '@radix-ui/react-slot'
-import { HTMLAttributes, forwardRef } from 'react'
+import { HTMLAttributes, forwardRef, useContext } from 'react'
 
 export interface CarouselSlideProps extends HTMLAttributes<HTMLDivElement> {
   asChild?: boolean
@@ -8,8 +9,13 @@ export interface CarouselSlideProps extends HTMLAttributes<HTMLDivElement> {
 
 export const CarouselSlide = forwardRef<HTMLDivElement, CarouselSlideProps>(
   ({ asChild, className, ...props }, ref) => {
+    const { slidesPerView } = useContext(CarouselContext)
+    const slideWidth = 100 / slidesPerView
     const Comp = asChild ? Slot : 'div'
-    return <Comp className={cn('flex-grow', className)} ref={ref} {...props} />
+
+    return (
+      <Comp className={cn(`h-full flex-[1_0_${slideWidth}%]`, className)} ref={ref} {...props} />
+    )
   },
 )
 

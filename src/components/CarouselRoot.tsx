@@ -8,11 +8,11 @@ import { CarouselPrevButton } from './CarouselPrevButton'
 import { CarouselNextButton } from './CarouselNextButton'
 import { CarouselSlide } from './CarouselSlide'
 
-export const carouselRootVariants = cva('flex overflow-x-auto', {
+export const carouselRootVariants = cva('flex', {
   variants: {
     variant: {
-      default: 'flex w-full gap-2 overflow-x-auto',
-      stacked: 'flex w-full overflow-x-auto',
+      default: 'flex flex-col w-full h-full items-center gap-4',
+      stacked: 'flex w-full',
       // vertical: 'flex flex-col overflow-y-auto',
       // full: 'flex flex-col overflow-y-auto',
     },
@@ -32,6 +32,7 @@ export interface CarouselRootProps
 export const CarouselRoot = forwardRef<HTMLDivElement, CarouselRootProps>(
   ({ slidesPerView, variant, className, children, asChild = false, ...props }, ref) => {
     const Comp = asChild ? Slot : 'div'
+    const slideContainerRef = React.useRef<HTMLDivElement>(null)
 
     let filteredChildren = children
 
@@ -42,13 +43,25 @@ export const CarouselRoot = forwardRef<HTMLDivElement, CarouselRootProps>(
     const slideCount = React.Children.count(filteredChildren)
 
     return (
-      <CarouselProvider slideCount={slideCount} slidesPerView={slidesPerView}>
+      <CarouselProvider
+        slideCount={slideCount}
+        slidesPerView={slidesPerView}
+        slideContainerRef={slideContainerRef}
+      >
         <Comp className={cn(carouselRootVariants({ variant, className }))} ref={ref} {...props}>
-          <div className="flex w-full gap-4">
+          <div className="flex items-center w-full h-full gap-4">
             <CarouselPrevButton />
-            {filteredChildren}
+
+            <div
+              className="relative flex w-full h-full overflow-x-scroll scroll-smooth no-scrollbar"
+              ref={slideContainerRef}
+            >
+              {filteredChildren}
+            </div>
+
             <CarouselNextButton />
           </div>
+
           <CarouselPagination />
         </Comp>
       </CarouselProvider>
