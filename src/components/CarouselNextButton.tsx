@@ -1,6 +1,6 @@
 import { forwardRef, useContext } from 'react'
 import { CarouselContext } from 'src/context/CarouselContext'
-import { Button, ButtonProps } from './shared'
+import { Button, ButtonProps } from './internal'
 
 export const CarouselNextButton = forwardRef<HTMLButtonElement, ButtonProps>(
   ({ onClick, ...props }, ref) => {

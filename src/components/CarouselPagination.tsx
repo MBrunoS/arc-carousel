@@ -2,7 +2,7 @@ import { CarouselContext } from '@/context/CarouselContext'
 import { cn } from '@/lib/utils'
 import { Slot } from '@radix-ui/react-slot'
 import { HTMLAttributes, forwardRef, useContext } from 'react'
-import { CarouselPaginationItem } from './CarouselPaginationItem'
+import { PaginationItem } from './internal'
 
 export interface CarouselPaginationProps extends HTMLAttributes<HTMLDivElement> {
   asChild?: boolean
@@ -27,7 +27,7 @@ export const CarouselPagination = forwardRef<HTMLDivElement, CarouselPaginationP
         {...props}
       >
         {Array.from({ length: count }).map((_, i) => (
-          <CarouselPaginationItem key={i} index={i} />
+          <PaginationItem key={i} index={i} />
         ))}
       </Comp>
     )
