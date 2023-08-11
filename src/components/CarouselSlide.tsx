@@ -14,7 +14,12 @@ export const CarouselSlide = forwardRef<HTMLDivElement, CarouselSlideProps>(
     const Comp = asChild ? Slot : 'div'
 
     return (
-      <Comp className={cn(`h-full flex-[1_0_${slideWidth}%]`, className)} ref={ref} {...props} />
+      <Comp
+        className={cn('h-full flex-shrink-0', className)}
+        style={{ flexBasis: `${slideWidth}%` }}
+        ref={ref}
+        {...props}
+      />
     )
   },
 )
