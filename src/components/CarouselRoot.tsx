@@ -42,6 +42,13 @@ export const CarouselRoot = forwardRef<HTMLDivElement, CarouselRootProps>(
 
     const slideCount = React.Children.count(filteredChildren)
 
+    const mappedChildren = React.Children.map(filteredChildren, (child, index) => {
+      return React.cloneElement(child as React.ReactElement, {
+        'data-arc-index': index,
+        key: index,
+      })
+    })
+
     return (
       <CarouselProvider
         slideCount={slideCount}
@@ -53,7 +60,7 @@ export const CarouselRoot = forwardRef<HTMLDivElement, CarouselRootProps>(
             <CarouselPrevButton />
 
             <div className="relative flex w-full h-full overflow-clip" ref={slideContainerRef}>
-              {filteredChildren}
+              {mappedChildren}
             </div>
 
             <CarouselNextButton />
