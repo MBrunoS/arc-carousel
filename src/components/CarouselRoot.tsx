@@ -52,10 +52,7 @@ export const CarouselRoot = forwardRef<HTMLDivElement, CarouselRootProps>(
           <div className="flex items-center w-full h-full gap-4">
             <CarouselPrevButton />
 
-            <div
-              className="relative flex w-full h-full overflow-x-scroll scroll-smooth no-scrollbar"
-              ref={slideContainerRef}
-            >
+            <div className="relative flex w-full h-full overflow-clip" ref={slideContainerRef}>
               {filteredChildren}
             </div>
 

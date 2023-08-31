@@ -9,14 +9,17 @@ export interface CarouselSlideProps extends HTMLAttributes<HTMLDivElement> {
 
 export const CarouselSlide = forwardRef<HTMLDivElement, CarouselSlideProps>(
   ({ asChild, className, ...props }, ref) => {
-    const { slidesPerView } = useContext(CarouselContext)
+    const { slidesPerView, currentView } = useContext(CarouselContext)
     const slideWidth = 100 / slidesPerView
     const Comp = asChild ? Slot : 'div'
 
     return (
       <Comp
-        className={cn('h-full flex-shrink-0', className)}
-        style={{ flexBasis: `${slideWidth}%` }}
+        className={cn('h-full flex-shrink-0 transition-transform duration-300', className)}
+        style={{
+          width: `${slideWidth}%`,
+          transform: `translateX(${currentView * -slideWidth}%)`,
+        }}
         ref={ref}
         {...props}
       />
