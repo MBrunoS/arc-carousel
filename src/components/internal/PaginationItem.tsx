@@ -7,7 +7,7 @@ export interface PaginationItemProps extends HTMLAttributes<HTMLButtonElement> {
 }
 
 export const PaginationItem = forwardRef<HTMLButtonElement, PaginationItemProps>(
-  ({ index, className, ...props }: PaginationItemProps) => {
+  ({ index, className, ...props }: PaginationItemProps, ref) => {
     const { currentView, setCurrentView, slidesPerView } = useContext(CarouselContext)
     const isActive = index * slidesPerView === currentView
 
@@ -23,6 +23,7 @@ export const PaginationItem = forwardRef<HTMLButtonElement, PaginationItemProps>
           className,
         )}
         onClick={handleClick}
+        ref={ref}
         {...props}
       />
     )

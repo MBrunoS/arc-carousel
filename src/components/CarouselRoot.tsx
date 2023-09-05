@@ -50,11 +50,7 @@ export const CarouselRoot = forwardRef<HTMLDivElement, CarouselRootProps>(
     })
 
     return (
-      <CarouselProvider
-        slideCount={slideCount}
-        slidesPerView={slidesPerView}
-        slideContainerRef={slideContainerRef}
-      >
+      <CarouselProvider slideCount={slideCount} slidesPerView={slidesPerView}>
         <Comp className={cn(carouselRootVariants({ variant, className }))} ref={ref} {...props}>
           <div className="flex items-center w-full h-full gap-4">
             <CarouselPrevButton />
