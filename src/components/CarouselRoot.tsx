@@ -2,19 +2,17 @@ import React, { HTMLAttributes, forwardRef } from 'react'
 import { cva, type VariantProps } from 'class-variance-authority'
 import { CarouselProvider } from 'src/context/CarouselContext'
 import { Slot } from '@radix-ui/react-slot'
-import { cn, filterChildren } from '@/lib/utils'
+import { cn, countGrandChildrenOfType, filterChildren } from '@/lib/utils'
 import { CarouselPagination } from './CarouselPagination'
 import { CarouselPrevButton } from './CarouselPrevButton'
 import { CarouselNextButton } from './CarouselNextButton'
+import { CarouselWrapper } from './CarouselWrapper'
 import { CarouselSlide } from './CarouselSlide'
 
 export const carouselRootVariants = cva('flex', {
   variants: {
     variant: {
       default: 'flex flex-col w-full h-full items-center gap-4',
-      stacked: 'flex w-full',
-      // vertical: 'flex flex-col overflow-y-auto',
-      // full: 'flex flex-col overflow-y-auto',
     },
   },
   defaultVariants: {
@@ -32,22 +30,16 @@ export interface CarouselRootProps
 export const CarouselRoot = forwardRef<HTMLDivElement, CarouselRootProps>(
   ({ slidesPerView, variant, className, children, asChild = false, ...props }, ref) => {
     const Comp = asChild ? Slot : 'div'
-    const slideContainerRef = React.useRef<HTMLDivElement>(null)
 
-    let filteredChildren = children
+    const filteredChildren = filterChildren(children, CarouselWrapper)
 
-    if (variant === 'default' || variant == undefined) {
-      filteredChildren = filterChildren(children, CarouselSlide)
+    if (filteredChildren.length !== 1) {
+      throw new Error('CarouselRoot must have exactly one CarouselWrapper child')
     }
 
-    const slideCount = React.Children.count(filteredChildren)
+    const wrapper = filteredChildren[0]
 
-    const mappedChildren = React.Children.map(filteredChildren, (child, index) => {
-      return React.cloneElement(child as React.ReactElement, {
-        'data-arc-index': index,
-        key: index,
-      })
-    })
+    const slideCount = countGrandChildrenOfType(wrapper, CarouselSlide)
 
     return (
       <CarouselProvider slideCount={slideCount} slidesPerView={slidesPerView}>
@@ -55,9 +47,7 @@ export const CarouselRoot = forwardRef<HTMLDivElement, CarouselRootProps>(
           <div className="flex items-center w-full h-full gap-4">
             <CarouselPrevButton />
 
-            <div className="relative flex w-full h-full overflow-clip" ref={slideContainerRef}>
-              {mappedChildren}
-            </div>
+            {wrapper}
 
             <CarouselNextButton />
           </div>
