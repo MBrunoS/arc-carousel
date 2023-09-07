@@ -13,7 +13,7 @@ export const carouselButtonVariants = cva(
       },
       size: {
         small: 'w-10 h-10 px-2',
-        default: 'w-12 h-12 px-3',
+        default: 'w-10 h-10 px-2 md:w-12 md:h-12 md:px-3',
         large: 'w-16 h-16 px-5',
       },
     },
@@ -31,10 +31,14 @@ export interface ButtonProps
 }
 
 export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
-  ({ variant, className, children, asChild, ...props }, ref) => {
+  ({ variant, size, className, children, asChild, ...props }, ref) => {
     const Comp = asChild ? Slot : 'button'
     return (
-      <Comp className={cn(carouselButtonVariants({ variant, className }))} ref={ref} {...props}>
+      <Comp
+        className={cn(carouselButtonVariants({ variant, size, className }))}
+        ref={ref}
+        {...props}
+      >
         {children}
       </Comp>
     )
