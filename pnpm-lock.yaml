@@ -26,6 +26,9 @@ importers:
 
   apps/web:
     dependencies:
+      '@mbrunos/arc-carousel':
+        specifier: workspace:*
+        version: link:../../packages/core
       react:
         specifier: ^18.2.0
         version: 18.2.0
