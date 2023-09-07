@@ -2,13 +2,13 @@
   "name": "@mbrunos/arc-carousel",
   "version": "0.0.0",
   "type": "module",
-  "types": "dist/index.d.ts",
   "main": "./dist/arc-carousel.umd.js",
   "module": "./dist/arc-carousel.es.js",
   "exports": {
     ".": {
       "require": "./dist/arc-carousel.umd.js",
-      "import": "./dist/arc-carousel.es.js"
+      "import": "./dist/arc-carousel.es.js",
+      "types": "./dist/index.d.ts"
     },
     "./styles.css": {
       "require": "./dist/styles.css",
