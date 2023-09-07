@@ -1,103 +1,25 @@
 {
-  "name": "arc-carousel",
-  "version": "0.0.0",
-  "type": "module",
-  "types": "dist/index.d.ts",
-  "main": "./dist/arc-carousel.umd.js",
-  "module": "./dist/arc-carousel.es.js",
-  "exports": {
-    ".": {
-      "require": "./dist/arc-carousel.umd.js",
-      "import": "./dist/arc-carousel.es.js"
-    },
-    "./styles.css": {
-      "require": "./dist/styles.css",
-      "default": "./dist/styles.css"
-    }
-  },
-  "files": [
-    "dist"
-  ],
+  "private": true,
   "scripts": {
-    "build": "vite build && npm run build:css",
-    "build:css": "tailwindcss -m -i ./src/global.css -o ./dist/styles.css",
-    "storybook": "concurrently \"npm run storybook:css\" \"storybook dev -p 6006\"",
-    "storybook:css": "tailwindcss -w -i ./src/global.css -o .storybook/index.css",
-    "build-storybook": "concurrently \"npm run build-storybook:css\" \"storybook build\"",
-    "build-storybook:css": "tailwindcss -m -i ./src/global.css -o .storybook/index.css",
-    "prepublishOnly": "npm run build",
-    "lint": "eslint 'src/**/*.{js,jsx,ts,tsx}'",
-    "lint:fix": "eslint --fix 'src/**/*.{jsx,ts,tsx}'",
-    "format": "prettier --write src//**/*.{ts,tsx,css} --config ./.prettierrc",
+    "build": "turbo run build",
+    "dev": "turbo run dev",
+    "lint": "turbo run lint",
+    "format": "prettier --write \"**/*.{ts,tsx,md}\"",
     "prepare": "husky install",
-    "test": "vitest"
+    "pre-commit": "pnpm run --filter core pre-commit"
   },
   "husky": {
     "hooks": {
-      "pre-commit": "lint-staged"
+      "pre-commit": "pnpm pre-commit"
     }
   },
-  "lint-staged": {
-    "src/**/*.{js,jsx,ts,tsx}": [
-      "pnpm run lint",
-      "pnpm run format"
-    ]
-  },
   "devDependencies": {
-    "@radix-ui/react-slot": "^1.0.2",
-    "@storybook/addon-essentials": "^7.4.0",
-    "@storybook/addon-interactions": "^7.4.0",
-    "@storybook/addon-links": "^7.4.0",
-    "@storybook/addon-onboarding": "^1.0.8",
-    "@storybook/blocks": "^7.4.0",
-    "@storybook/react": "^7.4.0",
-    "@storybook/react-vite": "^7.4.0",
-    "@storybook/testing-library": "^0.2.0",
-    "@types/react": "^18.2.15",
-    "@types/react-dom": "^18.2.7",
-    "@typescript-eslint/eslint-plugin": "^6.2.1",
-    "@typescript-eslint/parser": "^6.2.1",
-    "@vitejs/plugin-react": "^4.0.4",
-    "@vitejs/plugin-react-swc": "^3.3.2",
-    "autoprefixer": "^10.4.14",
-    "class-variance-authority": "^0.7.0",
-    "clsx": "^2.0.0",
-    "concurrently": "^8.2.0",
-    "eslint": "^8.45.0",
-    "eslint-plugin-react": "^7.33.1",
-    "eslint-plugin-react-hooks": "^4.6.0",
-    "eslint-plugin-react-refresh": "^0.4.3",
-    "eslint-plugin-simple-import-sort": "^10.0.0",
-    "eslint-plugin-storybook": "^0.6.13",
+    "@turbo/gen": "^1.9.7",
+    "eslint": "^7.32.0",
     "husky": "^8.0.3",
-    "lint-staged": "^13.2.3",
-    "postcss": "^8.4.27",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
-    "react-hooks": "^1.0.1",
-    "storybook": "^7.4.0",
-    "tailwind-merge": "^1.14.0",
-    "tailwindcss": "^3.3.3",
-    "typescript": "^5.0.2",
-    "vite": "^4.4.5",
-    "vite-plugin-dts": "^3.4.0",
-    "vite-plugin-linter": "^2.0.2",
-    "vite-tsconfig-paths": "^4.2.0",
-    "vitest": "^0.34.1"
+    "prettier": "^2.5.1",
+    "turbo": "latest"
   },
-  "peerDependencies": {
-    "react": "16.8.0 || >=17.x",
-    "react-dom": "16.8.0 || >=17.x"
-  },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/mbrunos/arc-carousel"
-  },
-  "keywords": [],
-  "author": "MBrunoS",
-  "bugs": {
-    "url": "https://github.com/mbrunos/arc-carousel/issues"
-  },
-  "homepage": "https://github.com/mbrunos/arc-carousel#readme",
-  "license": "MIT"
+  "packageManager": "pnpm@8.6.2",
+  "name": "arc-carousel"
 }
