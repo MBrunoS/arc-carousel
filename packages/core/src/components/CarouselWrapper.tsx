@@ -1,12 +1,14 @@
+import { CarouselContext } from '@/context/CarouselContext'
 import { cn } from '@/lib/utils'
 import { Slot } from '@radix-ui/react-slot'
 import { VariantProps, cva } from 'class-variance-authority'
-import React, { HTMLAttributes, forwardRef } from 'react'
+import React, { HTMLAttributes, forwardRef, useContext } from 'react'
 
-export const carouselWrapperVariants = cva('flex w-full', {
+export const carouselWrapperVariants = cva('relative flex w-full h-full overflow-hidden', {
   variants: {
     variant: {
-      default: 'relative flex w-full h-full overflow-hidden',
+      default: 'flex-row',
+      vertical: 'flex-col',
     },
   },
   defaultVariants: {
@@ -21,7 +23,9 @@ export interface CarouselWrapperProps
 }
 
 export const CarouselWrapper = forwardRef<HTMLDivElement, CarouselWrapperProps>(
-  ({ variant, children, asChild, className, ...props }, ref) => {
+  ({ children, asChild, className, ...props }, ref) => {
+    const { variant } = useContext(CarouselContext)
+
     const Comp = asChild ? Slot : 'div'
 
     const mappedChildren = React.Children.map(children, (child, index) => {

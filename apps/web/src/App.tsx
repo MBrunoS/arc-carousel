@@ -4,7 +4,7 @@ import '@mbrunos/arc-carousel/styles.css'
 function App() {
   return (
     <section className="h-screen p-4 lg:px-20 lg:py-10">
-      <Carousel.Root>
+      <Carousel.Root variant="vertical">
         <Carousel.Wrapper>
           <Carousel.Slide className="flex items-center justify-center bg-indigo-300">
             SLIDE 1

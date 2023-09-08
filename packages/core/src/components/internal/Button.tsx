@@ -9,12 +9,12 @@ export const carouselButtonVariants = cva(
     variants: {
       variant: {
         default:
-          'text-indigo-400 border border-indigo-400 hover:text-indigo-600 hover:border-indigo-600 focus:outline-none focus:text-indigo-600 focus:border-indigo-600',
+          'text-indigo-400 hover:text-indigo-600 focus:text-indigo-600 focus:outline-indigo-600',
       },
       size: {
-        small: 'w-10 h-10 px-2',
-        default: 'w-10 h-10 px-2 md:w-12 md:h-12 md:px-3',
-        large: 'w-16 h-16 px-5',
+        small: 'w-10 h-10 p-2',
+        default: 'w-10 h-10 p-2 md:w-12 md:h-12 md:p-3',
+        large: 'w-16 h-16 p-5',
       },
     },
     defaultVariants: {

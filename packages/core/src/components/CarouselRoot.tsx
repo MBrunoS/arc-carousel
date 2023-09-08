@@ -9,10 +9,11 @@ import { CarouselNextButton } from './CarouselNextButton'
 import { CarouselWrapper } from './CarouselWrapper'
 import { CarouselSlide } from './CarouselSlide'
 
-export const carouselRootVariants = cva('flex', {
+export const carouselRootVariants = cva('flex w-full h-full items-center gap-4', {
   variants: {
     variant: {
-      default: 'flex flex-col w-full h-full items-center gap-4',
+      default: 'flex-col',
+      vertical: 'flex-row',
     },
   },
   defaultVariants: {
@@ -42,9 +43,14 @@ export const CarouselRoot = forwardRef<HTMLDivElement, CarouselRootProps>(
     const slideCount = countGrandChildrenOfType(wrapper, CarouselSlide)
 
     return (
-      <CarouselProvider slideCount={slideCount} slidesPerView={slidesPerView}>
+      <CarouselProvider slideCount={slideCount} slidesPerView={slidesPerView} variant={variant}>
         <Comp className={cn(carouselRootVariants({ variant, className }))} ref={ref} {...props}>
-          <div className="relative flex items-center w-full h-full gap-4">
+          <div
+            className={cn(
+              'relative flex items-center w-full h-full gap-4',
+              variant === 'vertical' ? 'flex-col' : 'flex-row',
+            )}
+          >
             <CarouselPrevButton className="absolute z-10 md:static left-2 bg-white/20" />
 
             {wrapper}
