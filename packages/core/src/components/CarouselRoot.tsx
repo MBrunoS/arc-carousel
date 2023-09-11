@@ -51,11 +51,21 @@ export const CarouselRoot = forwardRef<HTMLDivElement, CarouselRootProps>(
               variant === 'vertical' ? 'flex-col' : 'flex-row',
             )}
           >
-            <CarouselPrevButton className="absolute z-10 md:static left-2 bg-white/20" />
+            <CarouselPrevButton
+              className={cn(
+                'absolute z-10 md:static bg-white/20',
+                variant === 'vertical' ? 'top-2' : 'left-2',
+              )}
+            />
 
             {wrapper}
 
-            <CarouselNextButton className="absolute z-10 md:static right-2 bg-white/20" />
+            <CarouselNextButton
+              className={cn(
+                'absolute z-10 md:static bg-white/20',
+                variant === 'vertical' ? 'bottom-2' : 'right-2',
+              )}
+            />
           </div>
 
           <CarouselPagination />
