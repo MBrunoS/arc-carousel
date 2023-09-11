@@ -19,11 +19,12 @@ export const carouselWrapperVariants = cva('relative flex w-full h-full overflow
 export interface CarouselWrapperProps
   extends HTMLAttributes<HTMLDivElement>,
     VariantProps<typeof carouselWrapperVariants> {
+  gap?: number
   asChild?: boolean
 }
 
 export const CarouselWrapper = forwardRef<HTMLDivElement, CarouselWrapperProps>(
-  ({ children, asChild, className, ...props }, ref) => {
+  ({ children, asChild, gap = 0, className, ...props }, ref) => {
     const { variant } = useContext(CarouselContext)
 
     const Comp = asChild ? Slot : 'div'
@@ -32,11 +33,17 @@ export const CarouselWrapper = forwardRef<HTMLDivElement, CarouselWrapperProps>(
       return React.cloneElement(child as React.ReactElement, {
         'data-arc-index': index,
         key: index,
+        gap,
       })
     })
 
     return (
-      <Comp className={cn(carouselWrapperVariants({ variant, className }))} ref={ref} {...props}>
+      <Comp
+        className={cn(carouselWrapperVariants({ variant, className }))}
+        style={{ gap: `${gap}px` }}
+        ref={ref}
+        {...props}
+      >
         {mappedChildren}
       </Comp>
     )

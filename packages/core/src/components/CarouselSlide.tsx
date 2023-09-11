@@ -4,22 +4,27 @@ import { Slot } from '@radix-ui/react-slot'
 import { HTMLAttributes, forwardRef, useContext } from 'react'
 
 export interface CarouselSlideProps extends HTMLAttributes<HTMLDivElement> {
+  gap?: number
   asChild?: boolean
 }
 
 export const CarouselSlide = forwardRef<HTMLDivElement, CarouselSlideProps>(
-  ({ asChild, className, ...props }, ref) => {
+  ({ asChild, className, gap = 0, ...props }, ref) => {
     const { slidesPerView, currentView, variant } = useContext(CarouselContext)
     const slidePercentage = 100 / slidesPerView
     const style =
       variant === 'vertical'
         ? {
             height: `${slidePercentage}%`,
-            transform: `translateY(${currentView * -slidePercentage}%)`,
+            transform: `translateY(calc(${currentView * -slidePercentage}% - ${
+              gap * currentView
+            }px))`,
           }
         : {
             width: `${slidePercentage}%`,
-            transform: `translateX(${currentView * -slidePercentage}%)`,
+            transform: `translateX(calc(${currentView * -slidePercentage}% - ${
+              gap * currentView
+            }px))`,
           }
 
     const Comp = asChild ? Slot : 'div'
