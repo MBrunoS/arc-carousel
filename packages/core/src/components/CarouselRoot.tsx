@@ -24,12 +24,16 @@ export const carouselRootVariants = cva('flex w-full h-full items-center gap-4',
 export interface CarouselRootProps
   extends HTMLAttributes<HTMLDivElement>,
     VariantProps<typeof carouselRootVariants> {
-  slidesPerView?: number
+  slidesPerPage?: number
+  initialPage?: number
   asChild?: boolean
 }
 
 export const CarouselRoot = forwardRef<HTMLDivElement, CarouselRootProps>(
-  ({ slidesPerView, variant, className, children, asChild = false, ...props }, ref) => {
+  (
+    { slidesPerPage, initialPage, variant, className, children, asChild = false, ...props },
+    ref,
+  ) => {
     const Comp = asChild ? Slot : 'div'
 
     const filteredChildren = filterChildren(children, CarouselWrapper)
@@ -43,7 +47,12 @@ export const CarouselRoot = forwardRef<HTMLDivElement, CarouselRootProps>(
     const slideCount = countGrandChildrenOfType(wrapper, CarouselSlide)
 
     return (
-      <CarouselProvider slideCount={slideCount} slidesPerView={slidesPerView} variant={variant}>
+      <CarouselProvider
+        slideCount={slideCount}
+        slidesPerPage={slidesPerPage}
+        initialPage={initialPage}
+        variant={variant}
+      >
         <Comp className={cn(carouselRootVariants({ variant, className }))} ref={ref} {...props}>
           <div
             className={cn(

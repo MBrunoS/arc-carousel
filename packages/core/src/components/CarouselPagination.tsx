@@ -28,8 +28,8 @@ export interface CarouselPaginationProps
 
 export const CarouselPagination = forwardRef<HTMLDivElement, CarouselPaginationProps>(
   ({ className, asChild, ...props }, ref) => {
-    const { slideCount, slidesPerView, variant } = useContext(CarouselContext)
-    const count = Math.ceil(slideCount / slidesPerView)
+    const { slideCount, slidesPerPage, variant } = useContext(CarouselContext)
+    const count = Math.ceil(slideCount / slidesPerPage)
 
     if (count <= 1) return null
 

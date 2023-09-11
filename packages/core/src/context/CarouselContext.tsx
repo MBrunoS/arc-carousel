@@ -2,12 +2,13 @@ import React, { createContext, useState } from 'react'
 
 interface CarouselContextType {
   variant: 'default' | 'vertical' | null
-  currentView: number
-  setCurrentView: React.Dispatch<React.SetStateAction<number>>
+  currentPage: number
+  setCurrentPage: React.Dispatch<React.SetStateAction<number>>
   nextSlide: () => void
   prevSlide: () => void
   slideCount: number
-  slidesPerView: number
+  slidesPerPage: number
+  initialPage: number
 }
 
 export const CarouselContext = createContext<CarouselContextType>({} as CarouselContextType)
@@ -15,35 +16,42 @@ export const CarouselContext = createContext<CarouselContextType>({} as Carousel
 export interface CarouselProviderProps {
   children: React.ReactNode
   slideCount: number
-  slidesPerView?: number
+  slidesPerPage?: number
+  initialPage?: number
   variant?: 'default' | 'vertical' | null
 }
 
 export const CarouselProvider = ({
   children,
   slideCount,
-  slidesPerView = 1,
+  slidesPerPage = 1,
+  initialPage = 0,
   variant = 'default',
 }: CarouselProviderProps) => {
-  const [currentView, setCurrentView] = useState(0)
+  const [currentPage, setCurrentPage] = useState(() => {
+    if (initialPage < 1) return 0
+    else if (initialPage > slideCount) return slideCount - 1
+    else return initialPage - 1
+  })
 
   const nextSlide = () => {
-    setCurrentView((prev) => (prev + 1) % slideCount)
+    setCurrentPage((prev) => (prev + 1) % slideCount)
   }
 
   const prevSlide = () => {
-    setCurrentView((prev) => (prev - 1 + slideCount) % slideCount)
+    setCurrentPage((prev) => (prev - 1 + slideCount) % slideCount)
   }
 
   return (
     <CarouselContext.Provider
       value={{
-        currentView,
-        setCurrentView,
+        currentPage,
+        setCurrentPage,
         nextSlide,
         prevSlide,
         slideCount,
-        slidesPerView,
+        slidesPerPage,
+        initialPage,
         variant,
       }}
     >

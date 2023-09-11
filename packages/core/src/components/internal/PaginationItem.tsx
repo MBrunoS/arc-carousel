@@ -8,11 +8,11 @@ export interface PaginationItemProps extends HTMLAttributes<HTMLInputElement> {
 
 export const PaginationItem = forwardRef<HTMLInputElement, PaginationItemProps>(
   ({ index, className, ...props }: PaginationItemProps, ref) => {
-    const { currentView, setCurrentView, slidesPerView } = useContext(CarouselContext)
-    const isActive = index * slidesPerView === currentView
+    const { currentPage, setCurrentPage, slidesPerPage } = useContext(CarouselContext)
+    const isActive = index * slidesPerPage === currentPage
 
     const handleClick = () => {
-      setCurrentView(index * slidesPerView)
+      setCurrentPage(index * slidesPerPage)
     }
 
     return (
