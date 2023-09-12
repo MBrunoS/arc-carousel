@@ -3,8 +3,8 @@ import { CarouselContext } from 'src/context/CarouselContext'
 import { Button, ButtonProps } from './internal'
 
 export const CarouselPrevButton = forwardRef<HTMLButtonElement, ButtonProps>(
-  ({ onClick, ...props }, ref) => {
-    const { prevSlide, variant } = useContext(CarouselContext)
+  ({ onClick, children, ...props }, ref) => {
+    const { prevSlide, orientation } = useContext(CarouselContext)
 
     const leftArrow = (
       <svg
@@ -47,7 +47,7 @@ export const CarouselPrevButton = forwardRef<HTMLButtonElement, ButtonProps>(
 
     return (
       <Button onClick={handleClick} ref={ref} {...props}>
-        {variant === 'vertical' ? upArrow : leftArrow}
+        {children ?? (orientation === 'vertical' ? upArrow : leftArrow)}
       </Button>
     )
   },
