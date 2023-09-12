@@ -1,31 +1,16 @@
 import { CarouselContext } from '@/context/CarouselContext'
 import { cn } from '@/lib/utils'
 import { Slot } from '@radix-ui/react-slot'
-import { VariantProps, cva } from 'class-variance-authority'
 import React, { HTMLAttributes, forwardRef, useContext } from 'react'
 
-export const carouselWrapperVariants = cva('relative flex w-full h-full overflow-hidden', {
-  variants: {
-    variant: {
-      default: 'flex-row',
-      vertical: 'flex-col',
-    },
-  },
-  defaultVariants: {
-    variant: 'default',
-  },
-})
-
-export interface CarouselWrapperProps
-  extends HTMLAttributes<HTMLDivElement>,
-    VariantProps<typeof carouselWrapperVariants> {
+export interface CarouselWrapperProps extends HTMLAttributes<HTMLDivElement> {
   gap?: number
   asChild?: boolean
 }
 
 export const CarouselWrapper = forwardRef<HTMLDivElement, CarouselWrapperProps>(
   ({ children, asChild, gap = 0, className, ...props }, ref) => {
-    const { variant } = useContext(CarouselContext)
+    const { orientation } = useContext(CarouselContext)
 
     const Comp = asChild ? Slot : 'div'
 
@@ -39,7 +24,11 @@ export const CarouselWrapper = forwardRef<HTMLDivElement, CarouselWrapperProps>(
 
     return (
       <Comp
-        className={cn(carouselWrapperVariants({ variant, className }))}
+        className={cn(
+          'relative flex w-full h-full overflow-hidden',
+          orientation === 'vertical' ? 'flex-col' : 'flex-row',
+          className,
+        )}
         style={{ gap: `${gap}px` }}
         ref={ref}
         {...props}

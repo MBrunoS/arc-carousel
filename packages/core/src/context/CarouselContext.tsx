@@ -1,7 +1,7 @@
 import React, { createContext, useState } from 'react'
 
 interface CarouselContextType {
-  variant: 'default' | 'vertical' | null
+  orientation: 'horizontal' | 'vertical'
   currentPage: number
   setCurrentPage: React.Dispatch<React.SetStateAction<number>>
   nextSlide: () => void
@@ -15,18 +15,18 @@ export const CarouselContext = createContext<CarouselContextType>({} as Carousel
 
 export interface CarouselProviderProps {
   children: React.ReactNode
+  orientation: 'horizontal' | 'vertical'
   slideCount: number
   slidesPerPage?: number
   initialPage?: number
-  variant?: 'default' | 'vertical' | null
 }
 
 export const CarouselProvider = ({
   children,
+  orientation,
   slideCount,
   slidesPerPage = 1,
   initialPage = 0,
-  variant = 'default',
 }: CarouselProviderProps) => {
   const [currentPage, setCurrentPage] = useState(() => {
     if (initialPage < 1) return 0
@@ -45,6 +45,7 @@ export const CarouselProvider = ({
   return (
     <CarouselContext.Provider
       value={{
+        orientation,
         currentPage,
         setCurrentPage,
         nextSlide,
@@ -52,7 +53,6 @@ export const CarouselProvider = ({
         slideCount,
         slidesPerPage,
         initialPage,
-        variant,
       }}
     >
       {children}

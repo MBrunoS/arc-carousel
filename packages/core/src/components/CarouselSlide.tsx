@@ -10,10 +10,10 @@ export interface CarouselSlideProps extends HTMLAttributes<HTMLDivElement> {
 
 export const CarouselSlide = forwardRef<HTMLDivElement, CarouselSlideProps>(
   ({ asChild, className, gap = 0, ...props }, ref) => {
-    const { slidesPerPage, currentPage, variant } = useContext(CarouselContext)
+    const { slidesPerPage, currentPage, orientation } = useContext(CarouselContext)
     const slidePercentage = 100 / slidesPerPage
     const style =
-      variant === 'vertical'
+      orientation === 'vertical'
         ? {
             height: `${slidePercentage}%`,
             transform: `translateY(calc(${currentPage * -slidePercentage}% - ${
