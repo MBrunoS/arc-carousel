@@ -1,5 +1,6 @@
 import { CarouselNextButton } from './CarouselNextButton'
 import { CarouselPagination } from './CarouselPagination'
+import { CarouselPaginationItem } from './CarouselPaginationItem'
 import { CarouselPrevButton } from './CarouselPrevButton'
 import { CarouselRoot } from './CarouselRoot'
 import { CarouselSlide } from './CarouselSlide'
@@ -10,6 +11,7 @@ export const Carousel = {
   PrevButton: CarouselPrevButton,
   NextButton: CarouselNextButton,
   Pagination: CarouselPagination,
+  PaginationItem: CarouselPaginationItem,
   Wrapper: CarouselWrapper,
   Slide: CarouselSlide,
 }
