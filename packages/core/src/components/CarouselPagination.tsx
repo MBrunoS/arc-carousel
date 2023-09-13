@@ -6,12 +6,12 @@ import { CarouselPaginationItem } from './CarouselPaginationItem'
 
 export interface CarouselPaginationProps extends HTMLAttributes<HTMLDivElement> {
   asChild?: boolean
-  render?: (index: number) => JSX.Element
+  render?: (index: number, isActive: boolean) => JSX.Element
 }
 
 export const CarouselPagination = forwardRef<HTMLDivElement, CarouselPaginationProps>(
   ({ className, asChild, render, ...props }, ref) => {
-    const { slideCount, slidesPerPage, orientation } = useContext(CarouselContext)
+    const { slideCount, slidesPerPage, orientation, currentPage } = useContext(CarouselContext)
     const count = Math.ceil(slideCount / slidesPerPage)
 
     if (count <= 1) return null
@@ -20,16 +20,16 @@ export const CarouselPagination = forwardRef<HTMLDivElement, CarouselPaginationP
 
     return (
       <Comp
-        className={cn(
-          'flex gap-2 items-center justify-center transition duration-150 ease-in-out',
-          orientation === 'vertical' ? 'flex-col' : 'flex-row',
-          className,
-        )}
+        className={cn('flex', orientation === 'vertical' ? 'flex-col' : 'flex-row', className)}
         ref={ref}
         {...props}
       >
         {Array.from({ length: count }).map((_, i) =>
-          render ? render(i) : <CarouselPaginationItem key={i} index={i} />,
+          render ? (
+            render(i, i * slidesPerPage === currentPage)
+          ) : (
+            <CarouselPaginationItem key={i} index={i} />
+          ),
         )}
       </Comp>
     )
