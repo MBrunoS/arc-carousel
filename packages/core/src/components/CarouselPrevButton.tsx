@@ -4,7 +4,7 @@ import { Button, ButtonProps } from './internal'
 
 export const CarouselPrevButton = forwardRef<HTMLButtonElement, ButtonProps>(
   ({ onClick, children, ...props }, ref) => {
-    const { prevSlide, orientation } = useContext(CarouselContext)
+    const { prev, orientation } = useContext(CarouselContext)
 
     const leftArrow = (
       <svg
@@ -41,7 +41,7 @@ export const CarouselPrevButton = forwardRef<HTMLButtonElement, ButtonProps>(
     )
 
     const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
-      prevSlide()
+      prev()
       onClick?.(e)
     }
 

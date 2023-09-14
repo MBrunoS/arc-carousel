@@ -16,8 +16,8 @@ export const CarouselRoot = forwardRef<HTMLDivElement, CarouselRootProps>(
   (
     {
       orientation = 'horizontal',
-      slidesPerPage,
-      initialPage,
+      slidesPerPage = 1,
+      initialPage = 0,
       className,
       children,
       asChild = false,
@@ -36,11 +36,12 @@ export const CarouselRoot = forwardRef<HTMLDivElement, CarouselRootProps>(
     const wrapper = wrappers[0]
 
     const slideCount = countGrandChildrenOfType(wrapper, CarouselSlide)
+    const pagesCount = Math.ceil(slideCount / slidesPerPage)
 
     return (
       <CarouselProvider
         orientation={orientation}
-        slideCount={slideCount}
+        pagesCount={pagesCount}
         slidesPerPage={slidesPerPage}
         initialPage={initialPage}
       >

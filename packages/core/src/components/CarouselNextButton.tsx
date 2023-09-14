@@ -4,7 +4,7 @@ import { Button, ButtonProps } from './internal'
 
 export const CarouselNextButton = forwardRef<HTMLButtonElement, ButtonProps>(
   ({ onClick, children, ...props }, ref) => {
-    const { nextSlide, orientation } = useContext(CarouselContext)
+    const { next, orientation } = useContext(CarouselContext)
 
     const rightArrow = (
       <svg
@@ -41,7 +41,7 @@ export const CarouselNextButton = forwardRef<HTMLButtonElement, ButtonProps>(
     )
 
     const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
-      nextSlide()
+      next()
       onClick?.(e)
     }
 
