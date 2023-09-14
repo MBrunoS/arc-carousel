@@ -11,7 +11,7 @@ export interface CarouselPaginationProps extends HTMLAttributes<HTMLDivElement> 
 
 export const CarouselPagination = forwardRef<HTMLDivElement, CarouselPaginationProps>(
   ({ className, asChild, render, ...props }, ref) => {
-    const { pagesCount, slidesPerPage, orientation, currentPage } = useContext(CarouselContext)
+    const { pagesCount, orientation, currentPage } = useContext(CarouselContext)
 
     if (pagesCount <= 1) return null
 
@@ -24,11 +24,7 @@ export const CarouselPagination = forwardRef<HTMLDivElement, CarouselPaginationP
         {...props}
       >
         {Array.from({ length: pagesCount }).map((_, i) =>
-          render ? (
-            render(i, i * slidesPerPage === currentPage)
-          ) : (
-            <CarouselPaginationItem key={i} index={i} />
-          ),
+          render ? render(i, i === currentPage) : <CarouselPaginationItem key={i} index={i} />,
         )}
       </Comp>
     )

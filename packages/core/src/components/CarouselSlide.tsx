@@ -12,18 +12,20 @@ export const CarouselSlide = forwardRef<HTMLDivElement, CarouselSlideProps>(
   ({ asChild, className, gap = 0, ...props }, ref) => {
     const { slidesPerPage, currentPage, orientation } = useContext(CarouselContext)
     const slidePercentage = 100 / slidesPerPage
+    const slidesGap = (slidesPerPage * gap - gap) / slidesPerPage // adjust for the gap between slides
+
     const style =
       orientation === 'vertical'
         ? {
-            height: `${slidePercentage}%`,
-            transform: `translateY(calc(${currentPage * -slidePercentage}% - ${
-              gap * currentPage
+            height: `calc(${slidePercentage}% - ${slidesGap}px)`,
+            transform: `translateY(calc(${currentPage * slidesPerPage * -100}% - ${
+              gap * currentPage * slidesPerPage
             }px))`,
           }
         : {
-            width: `${slidePercentage}%`,
-            transform: `translateX(calc(${currentPage * -slidePercentage}% - ${
-              gap * currentPage
+            width: `calc(${slidePercentage}% - ${slidesGap}px)`,
+            transform: `translateX(calc(${currentPage * slidesPerPage * -100}% - ${
+              gap * currentPage * slidesPerPage
             }px))`,
           }
 
