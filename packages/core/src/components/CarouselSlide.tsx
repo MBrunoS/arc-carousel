@@ -2,38 +2,25 @@ import { CarouselContext } from '@/context/CarouselContext'
 import { cn } from '@/lib/utils'
 import { Slot } from '@radix-ui/react-slot'
 import { HTMLAttributes, forwardRef, useContext } from 'react'
+import { useSlideStyle } from './hooks/useSlideStyle'
 
 export interface CarouselSlideProps extends HTMLAttributes<HTMLDivElement> {
   gap?: number
+  index?: number
   asChild?: boolean
 }
 
 export const CarouselSlide = forwardRef<HTMLDivElement, CarouselSlideProps>(
-  ({ asChild, className, gap = 0, ...props }, ref) => {
-    const { slidesPerPage, currentPage, orientation } = useContext(CarouselContext)
-    const slidePercentage = 100 / slidesPerPage
-    const slidesGap = (slidesPerPage * gap - gap) / slidesPerPage // adjust for the gap between slides
+  ({ gap = 0, index = 0, asChild, className, ...props }, ref) => {
+    const { slidesPerPage, currentPage, orientation, transition } = useContext(CarouselContext)
 
-    const style =
-      orientation === 'vertical'
-        ? {
-            height: `calc(${slidePercentage}% - ${slidesGap}px)`,
-            transform: `translateY(calc(${currentPage * slidesPerPage * -100}% - ${
-              gap * currentPage * slidesPerPage
-            }px))`,
-          }
-        : {
-            width: `calc(${slidePercentage}% - ${slidesGap}px)`,
-            transform: `translateX(calc(${currentPage * slidesPerPage * -100}% - ${
-              gap * currentPage * slidesPerPage
-            }px))`,
-          }
+    const style = useSlideStyle({ gap, slidesPerPage, currentPage, orientation, transition, index })
 
     const Comp = asChild ? Slot : 'div'
 
     return (
       <Comp
-        className={cn('h-full flex-shrink-0 transition-transform duration-300', className)}
+        className={cn('h-full flex-shrink-0 transition duration-300', className)}
         style={style}
         ref={ref}
         {...props}
