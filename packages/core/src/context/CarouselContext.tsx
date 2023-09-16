@@ -1,4 +1,5 @@
 import React, { createContext, useState } from 'react'
+import { useEvents } from './EventsContext'
 
 interface CarouselContextType {
   orientation: 'horizontal' | 'vertical'
@@ -42,21 +43,34 @@ export const CarouselProvider = ({
     else if (initialPage > pagesCount) return pagesCount - 1
     else return initialPage - 1
   })
+  const { onSlideChange } = useEvents()
 
   const next = () => {
+    const prevIndex = currentPage
+    let nextIndex = 0
+
     if (hasLoop) {
-      setCurrentPage((prev) => (prev + 1) % pagesCount)
+      nextIndex = (currentPage + 1) % pagesCount
     } else {
-      setCurrentPage((prev) => (currentPage === pagesCount - 1 ? prev : prev + 1))
+      nextIndex = currentPage === pagesCount - 1 ? currentPage : currentPage + 1
     }
+
+    onSlideChange?.(prevIndex, nextIndex)
+    setCurrentPage(nextIndex)
   }
 
   const prev = () => {
+    const prevIndex = currentPage
+    let nextIndex = 0
+
     if (hasLoop) {
-      setCurrentPage((prev) => (prev - 1 + pagesCount) % pagesCount)
+      nextIndex = (currentPage - 1 + pagesCount) % pagesCount
     } else {
-      setCurrentPage((prev) => (currentPage === 0 ? prev : prev - 1))
+      nextIndex = currentPage === 0 ? currentPage : currentPage - 1
     }
+
+    onSlideChange?.(prevIndex, nextIndex)
+    setCurrentPage(nextIndex)
   }
 
   return (

@@ -4,8 +4,10 @@ import { Slot } from '@radix-ui/react-slot'
 import { cn, countGrandChildrenOfType, filterChildren } from '@/lib/utils'
 import { CarouselWrapper } from './CarouselWrapper'
 import { CarouselSlide } from './CarouselSlide'
+import { Events } from '../types/Events'
+import { EventsProvider } from '@/context/EventsContext'
 
-export interface CarouselRootProps extends HTMLAttributes<HTMLDivElement> {
+export interface CarouselRootProps extends HTMLAttributes<HTMLDivElement>, Events {
   orientation?: 'horizontal' | 'vertical'
   slidesPerPage?: number
   initialPage?: number
@@ -27,6 +29,11 @@ export const CarouselRoot = forwardRef<HTMLDivElement, CarouselRootProps>(
       className,
       children,
       asChild = false,
+      onSlideClick,
+      onSlideChange,
+      onSlideChangeStart,
+      onSlideChangeEnd,
+      onSlideFocus,
       ...props
     },
     ref,
@@ -45,19 +52,27 @@ export const CarouselRoot = forwardRef<HTMLDivElement, CarouselRootProps>(
     const pagesCount = Math.ceil(slideCount / slidesPerPage)
 
     return (
-      <CarouselProvider
-        orientation={orientation}
-        pagesCount={pagesCount}
-        slidesPerPage={slidesPerPage}
-        initialPage={initialPage}
-        hasLoop={hasLoop}
-        transition={transition}
-        gap={gap}
+      <EventsProvider
+        onSlideClick={onSlideClick}
+        onSlideChange={onSlideChange}
+        onSlideChangeStart={onSlideChangeStart}
+        onSlideChangeEnd={onSlideChangeEnd}
+        onSlideFocus={onSlideFocus}
       >
-        <Comp className={cn('flex', className)} ref={ref} {...props}>
-          {children}
-        </Comp>
-      </CarouselProvider>
+        <CarouselProvider
+          orientation={orientation}
+          pagesCount={pagesCount}
+          slidesPerPage={slidesPerPage}
+          initialPage={initialPage}
+          hasLoop={hasLoop}
+          transition={transition}
+          gap={gap}
+        >
+          <Comp className={cn('flex', className)} ref={ref} {...props}>
+            {children}
+          </Comp>
+        </CarouselProvider>
+      </EventsProvider>
     )
   },
 )

@@ -2,7 +2,8 @@ import { CarouselContext } from '@/context/CarouselContext'
 import { cn } from '@/lib/utils'
 import { Slot } from '@radix-ui/react-slot'
 import { HTMLAttributes, forwardRef, useContext } from 'react'
-import { useSlideStyle } from './hooks/useSlideStyle'
+import { useSlideStyle } from './internal/hooks/useSlideStyle'
+import { useEvents } from '@/context/EventsContext'
 
 export interface CarouselSlideProps extends HTMLAttributes<HTMLDivElement> {
   index?: number
@@ -10,14 +11,20 @@ export interface CarouselSlideProps extends HTMLAttributes<HTMLDivElement> {
 }
 
 export const CarouselSlide = forwardRef<HTMLDivElement, CarouselSlideProps>(
-  ({ index = 0, asChild, className, ...props }, ref) => {
+  ({ index = 0, asChild, className, onClick, ...props }, ref) => {
     const { slidesPerPage, currentPage, orientation, transition, gap } = useContext(CarouselContext)
+    const { onSlideClick } = useEvents()
 
     const style = useSlideStyle({ gap, slidesPerPage, currentPage, orientation, transition, index })
 
     const Comp = asChild ? Slot : 'div'
 
     const isActive = index * slidesPerPage === currentPage
+
+    const handleClick = (e: React.MouseEvent<HTMLDivElement>) => {
+      onClick?.(e)
+      onSlideClick?.(index, e)
+    }
 
     return (
       <Comp
@@ -26,6 +33,7 @@ export const CarouselSlide = forwardRef<HTMLDivElement, CarouselSlideProps>(
         ref={ref}
         data-arc-index={index}
         data-arc-is-active={isActive}
+        onClick={handleClick}
         {...props}
       />
     )

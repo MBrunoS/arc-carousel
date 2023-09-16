@@ -1,4 +1,5 @@
 import { CarouselContext } from '@/context/CarouselContext'
+import { useEvents } from '@/context/EventsContext'
 import { HTMLAttributes, forwardRef, useContext } from 'react'
 
 export interface PaginationItemProps extends HTMLAttributes<HTMLInputElement> {
@@ -8,10 +9,14 @@ export interface PaginationItemProps extends HTMLAttributes<HTMLInputElement> {
 export const CarouselPaginationItem = forwardRef<HTMLInputElement, PaginationItemProps>(
   ({ index, className, ...props }: PaginationItemProps, ref) => {
     const { currentPage, setCurrentPage, slidesPerPage } = useContext(CarouselContext)
+    const { onSlideChange } = useEvents()
     const isActive = index * slidesPerPage === currentPage
 
     const handleClick = () => {
-      setCurrentPage(index * slidesPerPage)
+      const prevIndex = currentPage
+      const nextIndex = index * slidesPerPage
+      onSlideChange?.(prevIndex, nextIndex)
+      setCurrentPage(nextIndex)
     }
 
     return (
