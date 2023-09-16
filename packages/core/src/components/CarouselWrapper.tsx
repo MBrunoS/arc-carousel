@@ -4,13 +4,12 @@ import { Slot } from '@radix-ui/react-slot'
 import React, { HTMLAttributes, forwardRef, useContext } from 'react'
 
 export interface CarouselWrapperProps extends HTMLAttributes<HTMLDivElement> {
-  gap?: number
   asChild?: boolean
 }
 
 export const CarouselWrapper = forwardRef<HTMLDivElement, CarouselWrapperProps>(
-  ({ children, asChild, gap = 0, className, ...props }, ref) => {
-    const { orientation } = useContext(CarouselContext)
+  ({ children, asChild, className, ...props }, ref) => {
+    const { orientation, gap } = useContext(CarouselContext)
 
     const Comp = asChild ? Slot : 'div'
 
@@ -18,7 +17,7 @@ export const CarouselWrapper = forwardRef<HTMLDivElement, CarouselWrapperProps>(
       return React.cloneElement(child as React.ReactElement, {
         'data-arc-index': index,
         key: index,
-        gap,
+        index,
       })
     })
 

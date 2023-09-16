@@ -12,6 +12,7 @@ export interface CarouselRootProps extends HTMLAttributes<HTMLDivElement> {
   hasLoop?: boolean
   asChild?: boolean
   transition?: 'slide' | 'fade'
+  gap?: number
 }
 
 export const CarouselRoot = forwardRef<HTMLDivElement, CarouselRootProps>(
@@ -22,6 +23,7 @@ export const CarouselRoot = forwardRef<HTMLDivElement, CarouselRootProps>(
       initialPage = 0,
       hasLoop = false,
       transition = 'slide',
+      gap = 0,
       className,
       children,
       asChild = false,
@@ -50,6 +52,7 @@ export const CarouselRoot = forwardRef<HTMLDivElement, CarouselRootProps>(
         initialPage={initialPage}
         hasLoop={hasLoop}
         transition={transition}
+        gap={gap}
       >
         <Comp className={cn('flex', className)} ref={ref} {...props}>
           {children}

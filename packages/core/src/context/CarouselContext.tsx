@@ -11,6 +11,7 @@ interface CarouselContextType {
   initialPage: number
   hasLoop: boolean
   transition: 'slide' | 'fade'
+  gap: number
 }
 
 export const CarouselContext = createContext<CarouselContextType>({} as CarouselContextType)
@@ -23,6 +24,7 @@ export interface CarouselProviderProps {
   initialPage: number
   hasLoop: boolean
   transition: 'slide' | 'fade'
+  gap: number
 }
 
 export const CarouselProvider = ({
@@ -33,6 +35,7 @@ export const CarouselProvider = ({
   initialPage,
   hasLoop,
   transition,
+  gap,
 }: CarouselProviderProps) => {
   const [currentPage, setCurrentPage] = useState(() => {
     if (initialPage < 1) return 0
@@ -69,6 +72,7 @@ export const CarouselProvider = ({
         initialPage,
         hasLoop,
         transition,
+        gap,
       }}
     >
       {children}

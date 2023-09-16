@@ -5,14 +5,13 @@ import { HTMLAttributes, forwardRef, useContext } from 'react'
 import { useSlideStyle } from './hooks/useSlideStyle'
 
 export interface CarouselSlideProps extends HTMLAttributes<HTMLDivElement> {
-  gap?: number
   index?: number
   asChild?: boolean
 }
 
 export const CarouselSlide = forwardRef<HTMLDivElement, CarouselSlideProps>(
-  ({ gap = 0, index = 0, asChild, className, ...props }, ref) => {
-    const { slidesPerPage, currentPage, orientation, transition } = useContext(CarouselContext)
+  ({ index = 0, asChild, className, ...props }, ref) => {
+    const { slidesPerPage, currentPage, orientation, transition, gap } = useContext(CarouselContext)
 
     const style = useSlideStyle({ gap, slidesPerPage, currentPage, orientation, transition, index })
 
