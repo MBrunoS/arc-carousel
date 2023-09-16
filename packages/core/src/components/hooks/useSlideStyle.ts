@@ -46,5 +46,6 @@ export function useSlideStyle({
     position: 'absolute',
     inset: 0,
     opacity: isActive ? 1 : 0,
+    zIndex: isActive ? 1 : 0,
   }
 }
