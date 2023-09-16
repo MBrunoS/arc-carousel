@@ -4,7 +4,7 @@ import { Button, ButtonProps } from './internal'
 
 export const CarouselNextButton = forwardRef<HTMLButtonElement, ButtonProps>(
   ({ onClick, children, ...props }, ref) => {
-    const { next, orientation } = useContext(CarouselContext)
+    const { next, orientation, hasLoop, currentPage, pagesCount } = useContext(CarouselContext)
 
     const rightArrow = (
       <svg
@@ -46,7 +46,12 @@ export const CarouselNextButton = forwardRef<HTMLButtonElement, ButtonProps>(
     }
 
     return (
-      <Button onClick={handleClick} ref={ref} {...props}>
+      <Button
+        onClick={handleClick}
+        disabled={!hasLoop && currentPage === pagesCount - 1}
+        ref={ref}
+        {...props}
+      >
         {children ?? (orientation === 'vertical' ? downArrow : rightArrow)}
       </Button>
     )

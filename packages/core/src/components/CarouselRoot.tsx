@@ -9,6 +9,7 @@ export interface CarouselRootProps extends HTMLAttributes<HTMLDivElement> {
   orientation?: 'horizontal' | 'vertical'
   slidesPerPage?: number
   initialPage?: number
+  hasLoop?: boolean
   asChild?: boolean
 }
 
@@ -18,6 +19,7 @@ export const CarouselRoot = forwardRef<HTMLDivElement, CarouselRootProps>(
       orientation = 'horizontal',
       slidesPerPage = 1,
       initialPage = 0,
+      hasLoop = false,
       className,
       children,
       asChild = false,
@@ -44,6 +46,7 @@ export const CarouselRoot = forwardRef<HTMLDivElement, CarouselRootProps>(
         pagesCount={pagesCount}
         slidesPerPage={slidesPerPage}
         initialPage={initialPage}
+        hasLoop={hasLoop}
       >
         <Comp className={cn('flex', className)} ref={ref} {...props}>
           {children}
