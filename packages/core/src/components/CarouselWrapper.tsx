@@ -15,7 +15,6 @@ export const CarouselWrapper = forwardRef<HTMLDivElement, CarouselWrapperProps>(
 
     const mappedChildren = React.Children.map(children, (child, index) => {
       return React.cloneElement(child as React.ReactElement, {
-        'data-arc-index': index,
         key: index,
         index,
       })

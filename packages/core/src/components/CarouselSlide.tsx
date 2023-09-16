@@ -17,11 +17,15 @@ export const CarouselSlide = forwardRef<HTMLDivElement, CarouselSlideProps>(
 
     const Comp = asChild ? Slot : 'div'
 
+    const isActive = index * slidesPerPage === currentPage
+
     return (
       <Comp
         className={cn('h-full flex-shrink-0 transition duration-300', className)}
         style={style}
         ref={ref}
+        data-arc-index={index}
+        data-arc-is-active={isActive}
         {...props}
       />
     )
