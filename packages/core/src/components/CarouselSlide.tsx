@@ -21,7 +21,7 @@ export const CarouselSlide = forwardRef<HTMLDivElement, CarouselSlideProps>(
 
     const Comp = asChild ? Slot : 'div'
 
-    const isActive = index * slidesPerPage === currentPage
+    const isActive = index / slidesPerPage === currentPage
 
     const handleClick = (e: React.MouseEvent<HTMLDivElement>) => {
       onClick?.(e)
