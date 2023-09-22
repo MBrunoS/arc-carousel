@@ -43,7 +43,7 @@ export const CarouselProvider = ({
     else if (initialPage > pagesCount) return pagesCount - 1
     else return initialPage - 1
   })
-  const { onSlideChange } = useEvents()
+  const { onPageChange } = useEvents()
 
   const next = () => {
     const prevIndex = currentPage
@@ -55,7 +55,7 @@ export const CarouselProvider = ({
       nextIndex = currentPage === pagesCount - 1 ? currentPage : currentPage + 1
     }
 
-    onSlideChange?.(prevIndex, nextIndex)
+    onPageChange?.(prevIndex, nextIndex)
     setCurrentPage(nextIndex)
   }
 
@@ -69,7 +69,7 @@ export const CarouselProvider = ({
       nextIndex = currentPage === 0 ? currentPage : currentPage - 1
     }
 
-    onSlideChange?.(prevIndex, nextIndex)
+    onPageChange?.(prevIndex, nextIndex)
     setCurrentPage(nextIndex)
   }
 

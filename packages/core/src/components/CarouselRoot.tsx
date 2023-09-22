@@ -1,4 +1,4 @@
-import React, { HTMLAttributes, forwardRef } from 'react'
+import { HTMLAttributes, forwardRef } from 'react'
 import { CarouselProvider } from 'src/context/CarouselContext'
 import { Slot } from '@radix-ui/react-slot'
 import { cn, countGrandChildrenOfType, filterChildren } from '@/lib/utils'
@@ -30,10 +30,8 @@ export const CarouselRoot = forwardRef<HTMLDivElement, CarouselRootProps>(
       children,
       asChild = false,
       onSlideClick,
-      onSlideChange,
-      onSlideChangeStart,
-      onSlideChangeEnd,
-      onSlideFocus,
+      onPageChange,
+      onPageChangeEnd,
       ...props
     },
     ref,
@@ -54,10 +52,8 @@ export const CarouselRoot = forwardRef<HTMLDivElement, CarouselRootProps>(
     return (
       <EventsProvider
         onSlideClick={onSlideClick}
-        onSlideChange={onSlideChange}
-        onSlideChangeStart={onSlideChangeStart}
-        onSlideChangeEnd={onSlideChangeEnd}
-        onSlideFocus={onSlideFocus}
+        onPageChange={onPageChange}
+        onPageChangeEnd={onPageChangeEnd}
       >
         <CarouselProvider
           orientation={orientation}
