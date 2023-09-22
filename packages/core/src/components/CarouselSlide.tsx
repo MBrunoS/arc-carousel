@@ -4,6 +4,7 @@ import { Slot } from '@radix-ui/react-slot'
 import { HTMLAttributes, forwardRef, useContext } from 'react'
 import { useSlideStyle } from './internal/hooks/useSlideStyle'
 import { useEvents } from '@/context/EventsContext'
+import { useSwipe } from './internal/hooks/useSwipe'
 
 export interface CarouselSlideProps extends HTMLAttributes<HTMLDivElement> {
   index?: number
@@ -12,7 +13,8 @@ export interface CarouselSlideProps extends HTMLAttributes<HTMLDivElement> {
 
 export const CarouselSlide = forwardRef<HTMLDivElement, CarouselSlideProps>(
   ({ index = 0, asChild, className, onClick, ...props }, ref) => {
-    const { slidesPerPage, currentPage, orientation, transition, gap } = useContext(CarouselContext)
+    const { slidesPerPage, currentPage, orientation, transition, gap, next, prev } =
+      useContext(CarouselContext)
     const { onSlideClick } = useEvents()
 
     const style = useSlideStyle({ gap, slidesPerPage, currentPage, orientation, transition, index })
@@ -26,6 +28,12 @@ export const CarouselSlide = forwardRef<HTMLDivElement, CarouselSlideProps>(
       onSlideClick?.(index, e)
     }
 
+    const touchHandlers = useSwipe({
+      onSwipedToNext: next,
+      onSwipedToPrev: prev,
+      orientation,
+    })
+
     return (
       <Comp
         className={cn('h-full flex-shrink-0 transition duration-300', className)}
@@ -34,6 +42,7 @@ export const CarouselSlide = forwardRef<HTMLDivElement, CarouselSlideProps>(
         data-arc-index={index}
         data-arc-is-active={isActive}
         onClick={handleClick}
+        {...touchHandlers}
         {...props}
       />
     )
