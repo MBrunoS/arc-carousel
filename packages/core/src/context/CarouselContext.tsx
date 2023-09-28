@@ -12,6 +12,7 @@ interface CarouselContextType {
   initialPage: number
   hasLoop: boolean
   transition: 'slide' | 'fade'
+  transitionDuration: number
   gap: number
 }
 
@@ -25,6 +26,7 @@ export interface CarouselProviderProps {
   initialPage: number
   hasLoop: boolean
   transition: 'slide' | 'fade'
+  transitionDuration: number
   gap: number
 }
 
@@ -36,6 +38,7 @@ export const CarouselProvider = ({
   initialPage,
   hasLoop,
   transition,
+  transitionDuration,
   gap,
 }: CarouselProviderProps) => {
   const [currentPage, setCurrentPage] = useState(() => {
@@ -86,6 +89,7 @@ export const CarouselProvider = ({
         initialPage,
         hasLoop,
         transition,
+        transitionDuration,
         gap,
       }}
     >

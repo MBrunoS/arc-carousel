@@ -13,8 +13,16 @@ export interface CarouselSlideProps extends HTMLAttributes<HTMLDivElement> {
 
 export const CarouselSlide = forwardRef<HTMLDivElement, CarouselSlideProps>(
   ({ index = 0, asChild, className, onClick, ...props }, ref) => {
-    const { slidesPerPage, currentPage, orientation, transition, gap, next, prev } =
-      useContext(CarouselContext)
+    const {
+      slidesPerPage,
+      currentPage,
+      orientation,
+      transition,
+      transitionDuration,
+      gap,
+      next,
+      prev,
+    } = useContext(CarouselContext)
     const { onSlideClick, onPageChangeEnd } = useEvents()
 
     const style = useSlideStyle({ gap, slidesPerPage, currentPage, orientation, transition, index })
@@ -41,8 +49,8 @@ export const CarouselSlide = forwardRef<HTMLDivElement, CarouselSlideProps>(
 
     return (
       <Comp
-        className={cn('h-full flex-shrink-0 transition duration-300', className)}
-        style={style}
+        className={cn('h-full flex-shrink-0 transition', className)}
+        style={{ ...style, transitionDuration: `${transitionDuration}ms` }}
         ref={ref}
         data-arc-index={index}
         data-arc-is-active={isActive}
