@@ -1,5 +1,5 @@
 {
-  "name": "@mbrunos/arc-carousel",
+  "name": "arc-carousel",
   "version": "0.0.0",
   "type": "module",
   "main": "./dist/arc-carousel.umd.js",
