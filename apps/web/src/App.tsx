@@ -1,3 +1,4 @@
+'use client'
 import { Carousel } from '@mbrunos/arc-carousel'
 import '@mbrunos/arc-carousel/styles.css'
 
@@ -7,32 +8,41 @@ function App() {
       <Carousel.Root
         className="flex flex-col items-center h-full gap-2"
         orientation="horizontal"
-        gap={0}
+        slidesPerPage={1}
+        initialPage={0}
+        hasLoop
         transition="slide"
-        hasLoop={false}
+        transitionDuration={300}
+        gap={0}
+        onSlideClick={(index) => console.log('slide clicked', index)}
+        onPageChange={(prevIndex, nextIndex) => console.log('page changed', prevIndex, nextIndex)}
+        onPageChangeEnd={(index) => console.log('page change end', index)}
+        autoplay
+        // autoplayInterval={3000}
       >
         <Carousel.Wrapper>
-          <Carousel.Slide className="flex items-center justify-center duration-500 bg-neutral-300">
+          <Carousel.Slide className="flex items-center justify-center bg-neutral-300">
             SLIDE 1
           </Carousel.Slide>
-          <Carousel.Slide className="flex items-center justify-center duration-500 bg-neutral-400">
+          <Carousel.Slide className="flex items-center justify-center bg-neutral-400">
             SLIDE 2
           </Carousel.Slide>
-          <Carousel.Slide className="flex items-center justify-center duration-500 bg-neutral-300">
+          <Carousel.Slide className="flex items-center justify-center bg-neutral-300">
             SLIDE 3
           </Carousel.Slide>
-          <Carousel.Slide className="flex items-center justify-center duration-500 bg-neutral-400">
+          <Carousel.Slide className="flex items-center justify-center bg-neutral-400">
             SLIDE 4
           </Carousel.Slide>
-          <Carousel.Slide className="flex items-center justify-center duration-500 bg-neutral-300">
+          <Carousel.Slide className="flex items-center justify-center bg-neutral-300">
             SLIDE 5
           </Carousel.Slide>
-          <Carousel.Slide className="flex items-center justify-center duration-500 bg-neutral-400">
+          <Carousel.Slide className="flex items-center justify-center bg-neutral-400">
             SLIDE 6
           </Carousel.Slide>
         </Carousel.Wrapper>
 
         <div className="flex items-center">
+          <Carousel.PlayPauseButton className="p-1 text-neutral-600 hover:text-neutral-950 focus:text-neutral-950" />
           <Carousel.PrevButton className="p-1 text-neutral-600 hover:text-neutral-950 focus:text-neutral-950 disabled:cursor-not-allowed" />
 
           <Carousel.Pagination
