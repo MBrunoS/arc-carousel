@@ -10,9 +10,9 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "arc-carousel": "workspace:*",
     "react": "^18.2.0",
-    "react-dom": "^18.2.0",
-    "@mbrunos/arc-carousel": "workspace:*"
+    "react-dom": "^18.2.0"
   },
   "devDependencies": {
     "@types/react": "^18.2.15",

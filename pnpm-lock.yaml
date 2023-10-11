@@ -38,7 +38,7 @@ importers:
 
   apps/web:
     dependencies:
-      '@mbrunos/arc-carousel':
+      arc-carousel:
         specifier: workspace:*
         version: link:../../packages/core
       react:
