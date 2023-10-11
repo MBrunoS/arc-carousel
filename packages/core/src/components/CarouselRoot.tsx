@@ -16,6 +16,8 @@ export interface CarouselRootProps extends HTMLAttributes<HTMLDivElement>, Event
   transition?: 'slide' | 'fade'
   transitionDuration?: number
   gap?: number
+  autoplay?: boolean
+  autoplayInterval?: number
 }
 
 export const CarouselRoot = forwardRef<HTMLDivElement, CarouselRootProps>(
@@ -34,6 +36,8 @@ export const CarouselRoot = forwardRef<HTMLDivElement, CarouselRootProps>(
       onSlideClick,
       onPageChange,
       onPageChangeEnd,
+      autoplay = false,
+      autoplayInterval = 3000,
       ...props
     },
     ref,
@@ -66,6 +70,8 @@ export const CarouselRoot = forwardRef<HTMLDivElement, CarouselRootProps>(
           transition={transition}
           transitionDuration={transitionDuration}
           gap={gap}
+          autoplay={autoplay}
+          autoplayInterval={autoplayInterval}
         >
           <Comp className={cn('flex', className)} ref={ref} {...props}>
             {children}

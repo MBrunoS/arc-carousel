@@ -1,4 +1,4 @@
-import React, { createContext, useState } from 'react'
+import React, { createContext, useCallback, useEffect, useRef, useState } from 'react'
 import { useEvents } from './EventsContext'
 
 interface CarouselContextType {
@@ -14,6 +14,9 @@ interface CarouselContextType {
   transition: 'slide' | 'fade'
   transitionDuration: number
   gap: number
+  startAutoplay: () => void
+  stopAutoplay: () => void
+  isAutoplaying: boolean
 }
 
 export const CarouselContext = createContext<CarouselContextType>({} as CarouselContextType)
@@ -28,6 +31,8 @@ export interface CarouselProviderProps {
   transition: 'slide' | 'fade'
   transitionDuration: number
   gap: number
+  autoplay: boolean
+  autoplayInterval: number
 }
 
 export const CarouselProvider = ({
@@ -40,6 +45,8 @@ export const CarouselProvider = ({
   transition,
   transitionDuration,
   gap,
+  autoplay,
+  autoplayInterval,
 }: CarouselProviderProps) => {
   const [currentPage, setCurrentPage] = useState(() => {
     if (initialPage < 1) return 0
@@ -76,6 +83,30 @@ export const CarouselProvider = ({
     setCurrentPage(nextIndex)
   }
 
+  const [isAutoplaying, setIsAutoplaying] = useState(autoplay)
+  const autoplayTimerRef = useRef<NodeJS.Timeout>()
+
+  const startAutoplay = useCallback(() => {
+    setIsAutoplaying(true)
+  }, [])
+
+  const stopAutoplay = useCallback(() => {
+    setIsAutoplaying(false)
+  }, [])
+
+  useEffect(() => {
+    if (isAutoplaying) {
+      autoplayTimerRef.current = setInterval(() => {
+        next()
+      }, autoplayInterval)
+    } else {
+      clearInterval(autoplayTimerRef.current!)
+    }
+    return () => {
+      clearInterval(autoplayTimerRef.current!)
+    }
+  }, [isAutoplaying])
+
   return (
     <CarouselContext.Provider
       value={{
@@ -91,6 +122,9 @@ export const CarouselProvider = ({
         transition,
         transitionDuration,
         gap,
+        startAutoplay,
+        stopAutoplay,
+        isAutoplaying,
       }}
     >
       {children}
