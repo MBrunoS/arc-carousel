@@ -105,7 +105,7 @@ export const CarouselProvider = ({
     return () => {
       clearInterval(autoplayTimerRef.current!)
     }
-  }, [isAutoplaying])
+  }, [isAutoplaying, next])
 
   return (
     <CarouselContext.Provider
