@@ -1,6 +1,6 @@
 'use client'
-import { Carousel } from '@mbrunos/arc-carousel'
-import '@mbrunos/arc-carousel/styles.css'
+import { Carousel } from 'arc-carousel'
+import 'arc-carousel/styles.css'
 
 function App() {
   return (
@@ -18,7 +18,7 @@ function App() {
         onPageChange={(prevIndex, nextIndex) => console.log('page changed', prevIndex, nextIndex)}
         onPageChangeEnd={(index) => console.log('page change end', index)}
         autoplay
-        // autoplayInterval={3000}
+        autoplayInterval={3000}
       >
         <Carousel.Wrapper>
           <Carousel.Slide className="flex items-center justify-center bg-neutral-300">
