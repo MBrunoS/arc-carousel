@@ -11,10 +11,11 @@ export default defineConfig({
       },
       sidebar: [
         {
-          label: 'Guides',
+          label: 'Quick Start',
           items: [
             // Each item here is one entry in the navigation menu.
-            { label: 'Getting Started', link: '/guides/getting-started/' },
+            { label: 'Getting Started', link: '/quick-start/getting-started/' },
+            { label: 'Key Concepts', link: '/quick-start/key-concepts/' },
           ],
         },
         {
