@@ -13,14 +13,22 @@ export default defineConfig({
         {
           label: 'Quick Start',
           items: [
-            // Each item here is one entry in the navigation menu.
             { label: 'Getting Started', link: '/quick-start/getting-started/' },
             { label: 'Key Concepts', link: '/quick-start/key-concepts/' },
           ],
         },
         {
           label: 'API Reference',
-          autogenerate: { directory: 'reference' },
+          items: [
+            { label: 'Carousel.Root', link: '/reference/carousel-root/' },
+            { label: 'Carousel.Wrapper', link: '/reference/carousel-wrapper/' },
+            { label: 'Carousel.Slide', link: '/reference/carousel-slide/' },
+            { label: 'Carousel.Pagination', link: '/reference/carousel-pagination/' },
+            { label: 'Carousel.PaginationItem', link: '/reference/carousel-pagination-item/' },
+            { label: 'Carousel.PrevButton', link: '/reference/carousel-prev-button/' },
+            { label: 'Carousel.NextButton', link: '/reference/carousel-next-button/' },
+            { label: 'Carousel.PlayPauseButton', link: '/reference/carousel-play-pause-button/' },
+          ],
         },
       ],
       customCss: ['./src/styles/theme.css'],
