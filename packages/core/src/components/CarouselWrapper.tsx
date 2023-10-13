@@ -23,8 +23,8 @@ export const CarouselWrapper = forwardRef<HTMLDivElement, CarouselWrapperProps>(
     return (
       <Comp
         className={cn(
-          'relative flex w-full h-full overflow-hidden',
-          orientation === 'vertical' ? 'flex-col' : 'flex-row',
+          'arc-relative arc-flex arc-w-full arc-h-full arc-overflow-hidden',
+          orientation === 'vertical' ? 'arc-flex-col' : 'arc-flex-row',
           className,
         )}
         style={{ gap: `${gap}px` }}

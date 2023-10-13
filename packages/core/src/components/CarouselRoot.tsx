@@ -73,7 +73,7 @@ export const CarouselRoot = forwardRef<HTMLDivElement, CarouselRootProps>(
           autoplay={autoplay}
           autoplayInterval={autoplayInterval}
         >
-          <Comp className={cn('flex', className)} ref={ref} {...props}>
+          <Comp className={cn('arc-flex', className)} ref={ref} {...props}>
             {children}
           </Comp>
         </CarouselProvider>

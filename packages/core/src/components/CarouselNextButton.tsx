@@ -13,7 +13,7 @@ export const CarouselNextButton = forwardRef<HTMLButtonElement, ButtonProps>(
         viewBox="0 0 24 24"
         strokeWidth={1.5}
         stroke="currentColor"
-        className="w-6 h-6"
+        className="arc-w-6 arc-h-6"
       >
         <path
           strokeLinecap="round"
@@ -30,7 +30,7 @@ export const CarouselNextButton = forwardRef<HTMLButtonElement, ButtonProps>(
         viewBox="0 0 24 24"
         strokeWidth={1.5}
         stroke="currentColor"
-        className="w-6 h-6"
+        className="arc-w-6 arc-h-6"
       >
         <path
           strokeLinecap="round"
