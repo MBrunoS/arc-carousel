@@ -1,6 +1,6 @@
 {
   "name": "arc-carousel",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "type": "module",
   "main": "./dist/arc-carousel.umd.js",
   "module": "./dist/arc-carousel.es.js",
