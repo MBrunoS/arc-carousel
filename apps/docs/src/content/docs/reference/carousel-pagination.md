@@ -37,10 +37,7 @@ import { Carousel } from 'arc-carousel'
 function MyCarousel() {
   return (
     <Carousel.Root>
-      <Carousel.Pagination
-        asChild={false}
-        render={(index, isActive) => renderCustomIndicator(index, isActive)}
-      />
+      <Carousel.Pagination render={(index, isActive) => renderCustomIndicator(index, isActive)} />
     </Carousel.Root>
   )
 }

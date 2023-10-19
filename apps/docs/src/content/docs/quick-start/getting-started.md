@@ -3,11 +3,11 @@ title: Getting Started
 description: How to start with the Arc Carousel library.
 ---
 
-Welcome to Arc Carousel, a powerful and flexible React carousel library that will help you create stunning, interactive carousels for your web projects. In this guide, we'll walk you through the steps to get started with Arc Carousel and have your carousels up and running in no time.
+Welcome to Arc Carousel, a powerful and flexible React library that will help you create stunning, interactive carousels for your web projects. In this guide, we'll walk you through the steps to get started with the library and have your carousels up and running in no time.
 
 ## Prerequisites
 
-Arc Carousel is a React component library. To use it effectively, you should have a basic understanding of React. If you are new to React, you can refer to the [React documentation](https://react.dev/learn) to get started.
+Arc Carousel is a React component library. To use it effectively, you should have a basic understanding of React. If you are new to React, you can refer to the [documentation](https://react.dev/learn) to get started.
 
 ## Installation
 
@@ -31,6 +31,7 @@ Once you've installed Arc Carousel, you can import it into your React applicatio
 ```jsx
 import React from 'react'
 import { Carousel } from 'arc-carousel'
+import 'arc-carousel/styles.css' // Import the default styles
 
 function MyCarousel() {
   return (
@@ -59,6 +60,7 @@ Arc Carousel is designed to be very simple to use, so all settings are optional.
 ```jsx
 import React from 'react'
 import { Carousel } from 'arc-carousel'
+import 'arc-carousel/styles.css'
 
 function MyCarousel() {
   return (

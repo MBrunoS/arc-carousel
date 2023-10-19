@@ -13,14 +13,6 @@ The `Root` component accepts the following props (all of them are optional):
 
 Inherits all HTML attributes for a `div` element since it can be used as a container.
 
-### Events
-
-`Root` also accepts event handlers provided by the `Events` interface to respond to user interactions. The available event handlers include:
-
-- `onSlideClick: (index: number, event: React.MouseEvent) => void`: Triggered when a slide is clicked.
-- `onPageChange: (prevIndex: number, nextIndex: number) => void`: Triggered when the page changes.
-- `onPageChangeEnd: (index: number) => void`: Triggered when the page change transition is completed.
-
 ### orientation
 
 - Type: `'horizontal' | 'vertical'`
@@ -90,6 +82,14 @@ Controls whether the carousel should autoplay.
 - Default: `3000`
 
 Specifies the autoplay interval in milliseconds.
+
+### Events
+
+`Root` also accepts event handlers provided by the `Events` interface to respond to user interactions. The available event handlers include:
+
+- `onSlideClick: (index: number, event: React.MouseEvent) => void`: Triggered when a slide is clicked.
+- `onPageChange: (prevIndex: number, nextIndex: number) => void`: Triggered when the page changes.
+- `onPageChangeEnd: (index: number) => void`: Triggered when the page change transition is completed.
 
 ## Usage
 

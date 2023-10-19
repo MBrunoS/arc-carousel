@@ -31,7 +31,7 @@ import { Carousel } from 'arc-carousel'
 function MyCarousel() {
   return (
     <Carousel.Root>
-      <Carousel.Wrapper asChild={false}>{/* Your carousel slides go here */}</Carousel.Wrapper>
+      <Carousel.Wrapper>{/* Your carousel slides go here */}</Carousel.Wrapper>
     </Carousel.Root>
   )
 }

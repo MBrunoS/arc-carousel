@@ -34,6 +34,15 @@ export default defineConfig({
         },
       ],
       customCss: ['./src/styles/tailwind.css'],
+      locales: {
+        root: {
+          label: 'English',
+          lang: 'en',
+        },
+        'pt-br': {
+          label: 'Português',
+        },
+      },
     }),
     react(),
     tailwind({

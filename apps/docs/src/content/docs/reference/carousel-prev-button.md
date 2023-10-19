@@ -3,7 +3,7 @@ title: Carousel.PrevButton
 description: API reference for the PrevButton component.
 ---
 
-The `PrevButton` component is a crucial part of the Arc Carousel library. It represents a button that allows users to navigate to the previous slide in the carousel.
+The `PrevButton` component represents a button that allows users to navigate to the previous slide in the carousel.
 
 ## Props
 

@@ -3,7 +3,7 @@ title: Carousel.NextButton
 description: API reference for the NextButton component.
 ---
 
-The `NextButton` component is a crucial part of the Arc Carousel library. It represents a button that allows users to navigate to the previous slide in the carousel.
+The `NextButton` component represents a button that allows users to navigate to the previous slide in the carousel.
 
 ## Props
 
