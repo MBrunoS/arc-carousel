@@ -21,5 +21,8 @@
     "turbo": "latest"
   },
   "packageManager": "pnpm@8.6.2",
-  "name": "arc-carousel"
+  "name": "arc-carousel",
+  "dependencies": {
+    "@changesets/cli": "^2.26.2"
+  }
 }
