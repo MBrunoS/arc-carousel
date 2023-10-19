@@ -14,13 +14,24 @@ export default defineConfig({
       sidebar: [
         {
           label: 'Quick Start',
+          translations: {
+            'pt-BR': 'Início Rápido',
+          },
           items: [
-            { label: 'Getting Started', link: '/quick-start/getting-started/' },
-            { label: 'Key Concepts', link: '/quick-start/key-concepts/' },
+            {
+              label: 'Getting Started',
+              link: '/quick-start/getting-started/',
+              translations: { 'pt-BR': 'Primeiros Passos' },
+            },
+            {
+              label: 'Key Concepts',
+              link: '/quick-start/key-concepts/',
+              translations: { 'pt-BR': 'Conceitos Chave' },
+            },
           ],
         },
         {
-          label: 'API Reference',
+          label: 'Referência da API',
           items: [
             { label: 'Carousel.Root', link: '/reference/carousel-root/' },
             { label: 'Carousel.Wrapper', link: '/reference/carousel-wrapper/' },
