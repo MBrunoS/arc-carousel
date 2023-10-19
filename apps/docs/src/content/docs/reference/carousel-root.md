@@ -47,7 +47,7 @@ Sets the initial page index when the carousel loads.
 - Type: `boolean`
 - Default: `false`
 
-Determines whether the carousel should loop infinitely.
+Determines whether the carousel should loop to the beginning/end when the user reaches the last/first slide.
 
 ### asChild
 
