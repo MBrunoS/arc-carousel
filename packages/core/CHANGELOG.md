@@ -1,5 +1,11 @@
 # arc-carousel
 
+## 1.0.2
+
+### Patch Changes
+
+- Remove flex display from Root component and fix pagination items checked state when slidesPerPage > 1
+
 ## 1.0.1
 
 ### Patch Changes
