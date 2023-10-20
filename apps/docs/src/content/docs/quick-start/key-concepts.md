@@ -46,7 +46,7 @@ Arc Carousel provides built-in navigation components to allow users to interact 
 
 ```jsx
 <Carousel.PrevButton />
-<Carousel.Pagination render={<Carousel.PaginationItem />} />
+<Carousel.Pagination render={() => <Carousel.PaginationItem />} />
 <Carousel.NextButton />
 <Carousel.PlayPauseButton />
 ```

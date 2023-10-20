@@ -31,7 +31,10 @@ export default defineConfig({
           ],
         },
         {
-          label: 'Referência da API',
+          label: 'API Reference',
+          translations: {
+            'pt-BR': 'Referência da API',
+          },
           items: [
             { label: 'Carousel.Root', link: '/reference/carousel-root/' },
             { label: 'Carousel.Wrapper', link: '/reference/carousel-wrapper/' },
