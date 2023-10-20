@@ -10,7 +10,7 @@ export const CarouselPaginationItem = forwardRef<HTMLInputElement, PaginationIte
   ({ index, className, ...props }: PaginationItemProps, ref) => {
     const { currentPage, setCurrentPage, slidesPerPage } = useContext(CarouselContext)
     const { onPageChange } = useEvents()
-    const isActive = index / slidesPerPage === currentPage
+    const isActive = index === currentPage
 
     const handleClick = () => {
       const prevIndex = currentPage
