@@ -4,7 +4,8 @@ import { Button, ButtonProps } from './internal'
 
 export const CarouselPlayPauseButton = forwardRef<HTMLButtonElement, ButtonProps>(
   ({ onClick, children, ...props }, ref) => {
-    const { startAutoplay, stopAutoplay, isAutoplaying } = useContext(CarouselContext)
+    const { startAutoplay, stopAutoplay, isAutoplaying, isPaused, setIsPaused } =
+      useContext(CarouselContext)
 
     const play = (
       <svg
@@ -37,17 +38,24 @@ export const CarouselPlayPauseButton = forwardRef<HTMLButtonElement, ButtonProps
     )
 
     const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
-      if (isAutoplaying) {
+      if (!isPaused) {
+        setIsPaused(true)
         stopAutoplay()
       } else {
+        setIsPaused(false)
         startAutoplay()
       }
       onClick?.(e)
     }
 
     return (
-      <Button onClick={handleClick} ref={ref} {...props}>
-        {children ?? (isAutoplaying ? pause : play)}
+      <Button
+        onClick={handleClick}
+        ref={ref}
+        aria-label={isPaused ? 'Start slide autoplay' : 'Pause slide autoplay'}
+        {...props}
+      >
+        {children ?? (isPaused ? play : pause)}
       </Button>
     )
   },

@@ -14,9 +14,12 @@ interface CarouselContextType {
   transition: 'slide' | 'fade'
   transitionDuration: number
   gap: number
+  autoplay: boolean
   startAutoplay: () => void
   stopAutoplay: () => void
   isAutoplaying: boolean
+  isPaused: boolean
+  setIsPaused: React.Dispatch<React.SetStateAction<boolean>>
 }
 
 export const CarouselContext = createContext<CarouselContextType>({} as CarouselContextType)
@@ -84,6 +87,7 @@ export const CarouselProvider = ({
   }
 
   const [isAutoplaying, setIsAutoplaying] = useState(autoplay)
+  const [isPaused, setIsPaused] = useState(false)
   const autoplayTimerRef = useRef<NodeJS.Timeout>()
 
   const startAutoplay = useCallback(() => {
@@ -122,9 +126,12 @@ export const CarouselProvider = ({
         transition,
         transitionDuration,
         gap,
+        autoplay,
         startAutoplay,
         stopAutoplay,
         isAutoplaying,
+        isPaused,
+        setIsPaused,
       }}
     >
       {children}
