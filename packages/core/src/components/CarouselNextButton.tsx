@@ -50,6 +50,7 @@ export const CarouselNextButton = forwardRef<HTMLButtonElement, ButtonProps>(
         onClick={handleClick}
         disabled={!hasLoop && currentPage === pagesCount - 1}
         ref={ref}
+        aria-label="Next page"
         {...props}
       >
         {children ?? (orientation === 'vertical' ? downArrow : rightArrow)}

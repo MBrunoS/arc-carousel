@@ -14,6 +14,8 @@ export interface CarouselSlideProps extends HTMLAttributes<HTMLDivElement> {
 export const CarouselSlide = forwardRef<HTMLDivElement, CarouselSlideProps>(
   ({ index = 0, asChild, className, onClick, ...props }, ref) => {
     const {
+      slideCount,
+      pagesCount,
       slidesPerPage,
       currentPage,
       orientation,
@@ -56,6 +58,9 @@ export const CarouselSlide = forwardRef<HTMLDivElement, CarouselSlideProps>(
         data-arc-is-active={isActive}
         onClick={handleClick}
         onTransitionEnd={handleTransitionEnd}
+        role="group"
+        aria-roledescription="slide"
+        aria-label={`${index + 1} of ${slideCount}. Page ${currentPage + 1} of ${pagesCount}`}
         {...touchHandlers}
         {...props}
       />

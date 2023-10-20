@@ -44,6 +44,9 @@ export const CarouselWrapper = forwardRef<HTMLDivElement, CarouselWrapperProps>(
         )}
         style={{ gap: `${gap}px` }}
         ref={ref}
+        role="region"
+        aria-atomic="false"
+        aria-live={isAutoplaying ? 'off' : 'polite'}
         onMouseEnter={handleMouseEnter}
         onMouseLeave={handleMouseLeave}
         {...props}

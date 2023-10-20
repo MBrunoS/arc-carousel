@@ -41,7 +41,7 @@ export const CarouselRoot = forwardRef<HTMLDivElement, CarouselRootProps>(
     },
     ref,
   ) => {
-    const Comp = asChild ? Slot : 'div'
+    const Comp = asChild ? Slot : 'section'
 
     const wrappers = filterChildren(children, CarouselWrapper)
 
@@ -62,6 +62,7 @@ export const CarouselRoot = forwardRef<HTMLDivElement, CarouselRootProps>(
       >
         <CarouselProvider
           orientation={orientation}
+          slideCount={slideCount}
           pagesCount={pagesCount}
           slidesPerPage={slidesPerPage}
           initialPage={initialPage}
@@ -72,7 +73,7 @@ export const CarouselRoot = forwardRef<HTMLDivElement, CarouselRootProps>(
           autoplay={autoplay}
           autoplayInterval={autoplayInterval}
         >
-          <Comp ref={ref} {...props}>
+          <Comp ref={ref} aria-roledescription="carousel" {...props}>
             {children}
           </Comp>
         </CarouselProvider>

@@ -7,6 +7,7 @@ interface CarouselContextType {
   setCurrentPage: React.Dispatch<React.SetStateAction<number>>
   next: () => void
   prev: () => void
+  slideCount: number
   pagesCount: number
   slidesPerPage: number
   initialPage: number
@@ -27,6 +28,7 @@ export const CarouselContext = createContext<CarouselContextType>({} as Carousel
 export interface CarouselProviderProps {
   children: React.ReactNode
   orientation: 'horizontal' | 'vertical'
+  slideCount: number
   pagesCount: number
   slidesPerPage: number
   initialPage: number
@@ -41,6 +43,7 @@ export interface CarouselProviderProps {
 export const CarouselProvider = ({
   children,
   orientation,
+  slideCount,
   pagesCount,
   slidesPerPage,
   initialPage,
@@ -119,6 +122,7 @@ export const CarouselProvider = ({
         setCurrentPage,
         next,
         prev,
+        slideCount,
         pagesCount,
         slidesPerPage,
         initialPage,

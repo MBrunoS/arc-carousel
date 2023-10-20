@@ -46,7 +46,13 @@ export const CarouselPrevButton = forwardRef<HTMLButtonElement, ButtonProps>(
     }
 
     return (
-      <Button onClick={handleClick} disabled={!hasLoop && currentPage === 0} ref={ref} {...props}>
+      <Button
+        onClick={handleClick}
+        disabled={!hasLoop && currentPage === 0}
+        ref={ref}
+        aria-label="Previous page"
+        {...props}
+      >
         {children ?? (orientation === 'vertical' ? upArrow : leftArrow)}
       </Button>
     )
