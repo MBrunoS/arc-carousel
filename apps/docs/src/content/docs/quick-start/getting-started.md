@@ -51,7 +51,7 @@ function MyCarousel() {
 export default MyCarousel
 ```
 
-Now, you can customize your carousel by adding content, styles, and options as needed.
+Now you have a functional carousel, with minimal styling and mobile support. You can customize it to suit your needs by adding content, styles, and options as needed.
 
 ## Basic Configuration
 

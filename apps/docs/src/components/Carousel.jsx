@@ -3,8 +3,14 @@ import 'arc-carousel/styles.css'
 
 export default function MyCarousel() {
   return (
-    <Carousel.Root className="mt-4" slidesPerPage={3} autoplay autoplayInterval={4000} hasLoop>
-      <Carousel.Wrapper className="relative">
+    <Carousel.Root
+      className="relative mt-4"
+      slidesPerPage={3}
+      autoplay
+      autoplayInterval={4000}
+      hasLoop
+    >
+      <Carousel.Wrapper>
         <Carousel.Slide className="mt-6">
           <img src="https://picsum.photos/id/11/400" className="object-cover w-full" />
         </Carousel.Slide>
@@ -34,14 +40,14 @@ export default function MyCarousel() {
         <Carousel.Slide>
           <img src="https://picsum.photos/id/114/400" className="object-cover w-full" />
         </Carousel.Slide>
-
-        <div className="absolute bottom-1 left-1">
-          <Carousel.PlayPauseButton className="p-2 text-white bg-black/50" />
-        </div>
       </Carousel.Wrapper>
 
+      <div className="absolute -bottom-1 left-1">
+        <Carousel.PlayPauseButton className="p-2 text-gray-500 bg-transparent cursor-pointer hover:text-gray-400" />
+      </div>
+
       <div className="flex items-center justify-center gap-4">
-        <Carousel.PrevButton className="w-8 h-8 cursor-pointer hover:bg-gray-400" />
+        <Carousel.PrevButton className="w-8 h-8 text-gray-500 bg-transparent cursor-pointer hover:text-gray-400 !mt-0" />
 
         <Carousel.Pagination
           className="justify-center gap-2 !mt-0"
@@ -54,7 +60,7 @@ export default function MyCarousel() {
           )}
         />
 
-        <Carousel.NextButton className="w-8 h-8 !mt-0 cursor-pointer hover:bg-gray-400" />
+        <Carousel.NextButton className="w-8 h-8 !mt-0 cursor-pointer bg-transparent text-gray-500 hover:text-gray-400" />
       </div>
     </Carousel.Root>
   )

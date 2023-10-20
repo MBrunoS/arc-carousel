@@ -51,7 +51,7 @@ function MyCarousel() {
 export default MyCarousel
 ```
 
-Agora, você pode personalizar seu carrossel adicionando conteúdo, estilos e opções conforme necessário.
+Agora você tem um carrossel funcional, com estilização mínima e suporte a dispositivos móveis. Você pode personalizá-lo para atender às suas necessidades, adicionando conteúdo, estilos e opções conforme necessário.
 
 ## Configuração Básica
 
