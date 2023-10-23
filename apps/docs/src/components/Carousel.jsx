@@ -12,33 +12,69 @@ export default function MyCarousel() {
     >
       <Carousel.Wrapper>
         <Carousel.Slide className="mt-6">
-          <img src="https://picsum.photos/id/11/400" className="object-cover w-full" />
+          <img
+            src="https://picsum.photos/id/11/400"
+            className="object-cover w-full"
+            alt="Random image"
+          />
         </Carousel.Slide>
         <Carousel.Slide>
-          <img src="https://picsum.photos/id/29/400" className="object-cover w-full" />
+          <img
+            src="https://picsum.photos/id/29/400"
+            className="object-cover w-full"
+            alt="Random image"
+          />
         </Carousel.Slide>
         <Carousel.Slide>
-          <img src="https://picsum.photos/id/46/400" className="object-cover w-full" />
+          <img
+            src="https://picsum.photos/id/46/400"
+            className="object-cover w-full"
+            alt="Random image"
+          />
         </Carousel.Slide>
 
         <Carousel.Slide>
-          <img src="https://picsum.photos/id/54/400" className="object-cover w-full" />
+          <img
+            src="https://picsum.photos/id/54/400"
+            className="object-cover w-full"
+            alt="Random image"
+          />
         </Carousel.Slide>
         <Carousel.Slide>
-          <img src="https://picsum.photos/id/66/400" className="object-cover w-full" />
+          <img
+            src="https://picsum.photos/id/66/400"
+            className="object-cover w-full"
+            alt="Random image"
+          />
         </Carousel.Slide>
         <Carousel.Slide>
-          <img src="https://picsum.photos/id/74/400" className="object-cover w-full" />
+          <img
+            src="https://picsum.photos/id/74/400"
+            className="object-cover w-full"
+            alt="Random image"
+          />
         </Carousel.Slide>
 
         <Carousel.Slide>
-          <img src="https://picsum.photos/id/83/400" className="object-cover w-full" />
+          <img
+            src="https://picsum.photos/id/83/400"
+            className="object-cover w-full"
+            alt="Random image"
+          />
         </Carousel.Slide>
         <Carousel.Slide>
-          <img src="https://picsum.photos/id/108/400" className="object-cover w-full" />
+          <img
+            src="https://picsum.photos/id/108/400"
+            className="object-cover w-full"
+            alt="Random image"
+          />
         </Carousel.Slide>
         <Carousel.Slide>
-          <img src="https://picsum.photos/id/114/400" className="object-cover w-full" />
+          <img
+            src="https://picsum.photos/id/114/400"
+            className="object-cover w-full"
+            alt="Random image"
+          />
         </Carousel.Slide>
       </Carousel.Wrapper>
 
