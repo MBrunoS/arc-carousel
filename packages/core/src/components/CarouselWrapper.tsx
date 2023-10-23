@@ -9,7 +9,7 @@ export interface CarouselWrapperProps extends HTMLAttributes<HTMLDivElement> {
 
 export const CarouselWrapper = forwardRef<HTMLDivElement, CarouselWrapperProps>(
   ({ children, asChild, className, onMouseEnter, onMouseLeave, ...props }, ref) => {
-    const { orientation, gap, isAutoplaying, isPaused, stopAutoplay, startAutoplay } =
+    const { orientation, gap, isAutoplaying, isPaused, stopAutoplay, startAutoplay, autoplay } =
       useContext(CarouselContext)
 
     const Comp = asChild ? Slot : 'div'
@@ -22,14 +22,14 @@ export const CarouselWrapper = forwardRef<HTMLDivElement, CarouselWrapperProps>(
     })
 
     const handleMouseEnter: React.MouseEventHandler<HTMLDivElement> = (e) => {
-      if (isAutoplaying && !isPaused) {
+      if (autoplay && isAutoplaying && !isPaused) {
         stopAutoplay()
       }
       onMouseEnter?.(e)
     }
 
     const handleMouseLeave: React.MouseEventHandler<HTMLDivElement> = (e) => {
-      if (!isAutoplaying && !isPaused) {
+      if (autoplay && !isAutoplaying && !isPaused) {
         startAutoplay()
       }
       onMouseLeave?.(e)
