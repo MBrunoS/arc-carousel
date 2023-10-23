@@ -7,8 +7,9 @@ export interface PaginationItemProps extends HTMLAttributes<HTMLInputElement> {
 }
 
 export const CarouselPaginationItem = forwardRef<HTMLInputElement, PaginationItemProps>(
-  ({ index, className, ...props }: PaginationItemProps, ref) => {
-    const { currentPage, setCurrentPage, slidesPerPage } = useContext(CarouselContext)
+  ({ index, className, onFocus, onBlur, onKeyDown, ...props }: PaginationItemProps, ref) => {
+    const { currentPage, setCurrentPage, startAutoplay, stopAutoplay, autoplay, isPaused } =
+      useContext(CarouselContext)
     const { onPageChange } = useEvents()
     const isActive = index === currentPage
 
@@ -17,6 +18,28 @@ export const CarouselPaginationItem = forwardRef<HTMLInputElement, PaginationIte
       const nextIndex = index
       onPageChange?.(prevIndex, nextIndex)
       setCurrentPage(nextIndex)
+    }
+
+    const handleFocus: React.FocusEventHandler<HTMLInputElement> = (e) => {
+      if (autoplay && !isPaused) {
+        stopAutoplay()
+      }
+      onFocus?.(e)
+    }
+
+    const handleBlur: React.FocusEventHandler<HTMLInputElement> = (e) => {
+      if (autoplay && !isPaused) {
+        startAutoplay()
+      }
+      onBlur?.(e)
+    }
+
+    const handleKeyDown: React.KeyboardEventHandler<HTMLInputElement> = (e) => {
+      if (e.key === 'ArrowUp' || e.key === 'ArrowDown') {
+        e.preventDefault()
+        return
+      }
+      onKeyDown?.(e)
     }
 
     return (
@@ -28,6 +51,9 @@ export const CarouselPaginationItem = forwardRef<HTMLInputElement, PaginationIte
           onChange={handleClick}
           checked={isActive}
           ref={ref}
+          onFocus={handleFocus}
+          onBlur={handleBlur}
+          onKeyDown={handleKeyDown}
           {...props}
         />
       </>

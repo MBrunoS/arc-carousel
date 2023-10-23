@@ -12,10 +12,9 @@ export interface CarouselSlideProps extends HTMLAttributes<HTMLDivElement> {
 }
 
 export const CarouselSlide = forwardRef<HTMLDivElement, CarouselSlideProps>(
-  ({ index = 0, asChild, className, onClick, ...props }, ref) => {
+  ({ index = 0, asChild, className, onClick, onFocus, ...props }, ref) => {
     const {
       slideCount,
-      pagesCount,
       slidesPerPage,
       currentPage,
       orientation,
@@ -24,6 +23,7 @@ export const CarouselSlide = forwardRef<HTMLDivElement, CarouselSlideProps>(
       gap,
       next,
       prev,
+      setCurrentPage,
     } = useContext(CarouselContext)
     const { onSlideClick, onPageChangeEnd } = useEvents()
 
@@ -31,7 +31,8 @@ export const CarouselSlide = forwardRef<HTMLDivElement, CarouselSlideProps>(
 
     const Comp = asChild ? Slot : 'div'
 
-    const isActive = index / slidesPerPage === currentPage
+    const isActive =
+      index >= currentPage * slidesPerPage && index < (currentPage + 1) * slidesPerPage
 
     const handleClick = (e: React.MouseEvent<HTMLDivElement>) => {
       onClick?.(e)
@@ -49,6 +50,13 @@ export const CarouselSlide = forwardRef<HTMLDivElement, CarouselSlideProps>(
       onPageChangeEnd?.(currentPage)
     }
 
+    const handleFocus: React.FocusEventHandler<HTMLDivElement> = (e) => {
+      if (!isActive) {
+        setCurrentPage(Math.floor(index / slidesPerPage))
+      }
+      onFocus?.(e)
+    }
+
     return (
       <Comp
         className={cn('arc-h-full arc-flex-shrink-0 arc-transition', className)}
@@ -58,9 +66,10 @@ export const CarouselSlide = forwardRef<HTMLDivElement, CarouselSlideProps>(
         data-arc-is-active={isActive}
         onClick={handleClick}
         onTransitionEnd={handleTransitionEnd}
+        onFocus={handleFocus}
         role="group"
         aria-roledescription="slide"
-        aria-label={`${index + 1} of ${slideCount}. Page ${currentPage + 1} of ${pagesCount}`}
+        aria-label={`${index + 1} of ${slideCount}`}
         {...touchHandlers}
         {...props}
       />
