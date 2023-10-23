@@ -1,5 +1,11 @@
 # arc-carousel
 
+## 1.1.0
+
+### Minor Changes
+
+- Enhance a11y support
+
 ## 1.0.2
 
 ### Patch Changes
