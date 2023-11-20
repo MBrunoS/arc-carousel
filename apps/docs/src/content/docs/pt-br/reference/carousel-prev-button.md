@@ -43,3 +43,4 @@ export default MyCarousel
 - O componente `PrevButton` representa um botão que permite aos usuários navegar para o slide anterior no carrossel.
 - Ele oferece opções para personalizar o comportamento e a aparência do botão, incluindo a capacidade de especificar o conteúdo do botão.
 - O estado desativado do botão é determinado com base em se o carrossel possui um loop (`hasLoop`) e na página atual.
+- Quando clicado, ele aciona o evento onPageChange e atualiza a página atual no carrossel.

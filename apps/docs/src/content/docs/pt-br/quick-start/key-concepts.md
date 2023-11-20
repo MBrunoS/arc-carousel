@@ -7,7 +7,7 @@ Ao trabalhar com a biblioteca Arc Carousel, existem vários conceitos e termos-c
 
 ## Carousel Root
 
-O componente `Carousel.Root` é o contêiner de nível superior para o seu carrossel. Ele fornece um contexto para todos os componentes Carousel e opções de configuração. É onde você define propriedades como a orientação Carousel, o número de slides por página e muito mais.
+O componente `Carousel.Root` é o contêiner de nível superior para o seu carrossel. Ele fornece um contexto para todos os componentes e opções de configuração. É onde você define propriedades como a orientação, o número de slides por página e muito mais.
 
 ```jsx
 <Carousel.Root orientation="horizontal" slidesPerPage={1}>
@@ -17,7 +17,7 @@ O componente `Carousel.Root` é o contêiner de nível superior para o seu carro
 
 ## Carousel Wrapper
 
-O componente `Carousel.Wrapper` atua como um contêiner para os slides do seu carrossel. Você pode colocar seus itens de carrossel individuais dentro deste invólucro. Ele define o espaço onde os slides são exibidos e alinhados.
+O componente `Carousel.Wrapper` atua como um contêiner para os slides do seu carrossel. Você pode colocar seus itens de carrossel individuais dentro deste elemento. Ele define o espaço onde os slides são exibidos e alinhados.
 
 ```jsx
 <Carousel.Wrapper>
@@ -74,4 +74,4 @@ O Arc Carousel vem com várias opções de configuração que permitem personali
 </Carousel.Root>
 ```
 
-Ao compreender esses conceitos-chave, você estará melhor preparado para configurar e usar a biblioteca Arc Carousel em sua aplicação React. Sinta-se à vontade para explorar nossa [Referência da API](/pt-br/reference/carousel-root/) para obter informações mais detalhadas sobre esses conceitos e opções de personalização adicionais.
+Sinta-se à vontade para explorar nossa [Referência da API](/pt-br/reference/carousel-root/) para obter informações mais detalhadas sobre esses conceitos e opções de personalização adicionais.

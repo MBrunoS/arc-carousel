@@ -13,13 +13,6 @@ O componente `Slide` aceita as seguintes propriedades:
 
 Herda todos os atributos HTML de um elemento `div`, uma vez que pode ser usado como um contêiner.
 
-### index (opcional)
-
-- Tipo: `number`
-- Padrão: `0`
-
-Especifica o índice do slide. Ele é usado para determinar a posição do slide dentro do carrossel. **Isso é usado internamente pela biblioteca e não deve ser alterado.**
-
 ### asChild (opcional)
 
 - Tipo: `boolean`

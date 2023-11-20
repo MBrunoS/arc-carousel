@@ -53,7 +53,7 @@ Se `true`, o componente `Root` delega sua renderização ao seu único elemento 
 - Tipo: `'slide' | 'fade'`
 - Padrão: `'slide'`
 
-Especifica o tipo de transição entre slides, seja deslizante ou de desvanecimento.
+Especifica o tipo de transição entre slides, seja deslizar ou de desvanecer.
 
 ### transitionDuration
 

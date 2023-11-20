@@ -43,4 +43,3 @@ export default MyCarousel
 
 - O componente `Wrapper` é usado para envolver os slides do seu carrossel e é projetado para funcionar com outros componentes, como `CarouselRoot` e `CarouselSlide`.
 - Ele permite opções de layout e estilo para melhor controlar a aparência do seu carrossel.
-- Você pode definir a propriedade `asChild` como `true` se pretende usar o `Wrapper` como um filho dentro de outro contêiner ou componente.
