@@ -4,8 +4,10 @@ import { Button, ButtonProps } from './internal'
 
 export const CarouselPlayPauseButton = forwardRef<HTMLButtonElement, ButtonProps>(
   ({ onClick, children, ...props }, ref) => {
-    const { startAutoplay, stopAutoplay, isAutoplaying, isPaused, setIsPaused } =
+    const { startAutoplay, stopAutoplay, isPaused, setIsPaused, autoplay } =
       useContext(CarouselContext)
+
+    if (!autoplay) return null
 
     const play = (
       <svg
