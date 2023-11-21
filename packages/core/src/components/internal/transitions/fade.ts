@@ -3,14 +3,18 @@ import { TransitionStrategyProps } from '../types'
 
 export function fadeTransition({
   index,
-  currentPage,
+  slidePercentage,
   slidesPerPage,
+  slidesGap,
+  isActive,
+  orientation,
 }: TransitionStrategyProps): CSSProperties {
-  const isActive = index * slidesPerPage === currentPage
+  const positionAdjustment = `calc(${(index % slidesPerPage) * slidePercentage}% - ${slidesGap}px)`
 
   return {
     position: 'absolute',
-    inset: 0,
+    top: orientation === 'horizontal' ? 0 : positionAdjustment,
+    left: orientation === 'horizontal' ? positionAdjustment : 0,
     opacity: isActive ? 1 : 0,
     zIndex: isActive ? 1 : 0,
   }
