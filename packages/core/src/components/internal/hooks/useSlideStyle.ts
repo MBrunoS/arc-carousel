@@ -26,7 +26,7 @@ export function useSlideStyle({
 
   const transitionStrategy = transitionStrategies[transition]
 
-  return transitionStrategy({
+  const transitionStyles = transitionStrategy({
     orientation,
     gap,
     currentPage,
@@ -36,4 +36,17 @@ export function useSlideStyle({
     index,
     isActive,
   })
+
+  if (orientation === 'horizontal') {
+    return {
+      width: `calc(${slidePercentage}% - ${slidesGap}px)`,
+      ...transitionStyles,
+    }
+  }
+
+  // vertical
+  return {
+    height: `calc(${slidePercentage}% - ${slidesGap}px)`,
+    ...transitionStyles,
+  }
 }

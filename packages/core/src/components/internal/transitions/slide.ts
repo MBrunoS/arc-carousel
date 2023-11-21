@@ -6,22 +6,11 @@ export function slideTransition({
   gap,
   currentPage,
   slidesPerPage,
-  slidePercentage,
-  slidesGap,
 }: TransitionStrategyProps): CSSProperties {
-  if (orientation === 'horizontal') {
-    return {
-      width: `calc(${slidePercentage}% - ${slidesGap}px)`,
-      transform: `translateX(calc(${currentPage * slidesPerPage * -100}% - ${
-        gap * currentPage * slidesPerPage
-      }px))`,
-    }
-  }
+  const axis = orientation === 'horizontal' ? 'X' : 'Y'
 
-  // vertical
   return {
-    height: `calc(${slidePercentage}% - ${slidesGap}px)`,
-    transform: `translateY(calc(${currentPage * slidesPerPage * -100}% - ${
+    transform: `translate${axis}(calc(${currentPage * slidesPerPage * -100}% - ${
       gap * currentPage * slidesPerPage
     }px))`,
   }
