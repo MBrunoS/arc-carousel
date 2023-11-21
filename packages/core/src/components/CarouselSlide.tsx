@@ -12,7 +12,7 @@ export interface CarouselSlideProps extends HTMLAttributes<HTMLDivElement> {
 }
 
 export const CarouselSlide = forwardRef<HTMLDivElement, CarouselSlideProps>(
-  ({ index = 0, asChild, className, onClick, onFocus, ...props }, ref) => {
+  ({ index = 0, asChild, className, onClick, onFocus, style: styleProps, ...props }, ref) => {
     const {
       slideCount,
       slidesPerPage,
@@ -60,7 +60,7 @@ export const CarouselSlide = forwardRef<HTMLDivElement, CarouselSlideProps>(
     return (
       <Comp
         className={cn('arc-h-full arc-flex-shrink-0 arc-transition', className)}
-        style={{ ...style, transitionDuration: `${transitionDuration}ms` }}
+        style={{ ...styleProps, ...style, transitionDuration: `${transitionDuration}ms` }}
         ref={ref}
         data-arc-index={index}
         data-arc-is-active={isActive}

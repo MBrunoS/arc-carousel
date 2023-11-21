@@ -1,8 +1,10 @@
 import { CSSProperties } from 'react'
+import { transitionStrategies } from '../transitions'
+import { Orientation, Transition } from '../types'
 
 type UseSlideStyleProps = {
-  orientation: 'horizontal' | 'vertical'
-  transition: 'slide' | 'fade'
+  orientation: Orientation
+  transition: Transition
   gap: number
   currentPage: number
   slidesPerPage: number
@@ -20,32 +22,15 @@ export function useSlideStyle({
   const slidePercentage = 100 / slidesPerPage
   const slidesGap = (slidesPerPage * gap - gap) / slidesPerPage // adjustment for the gap between slides
 
-  if (transition === 'slide') {
-    if (orientation === 'horizontal') {
-      return {
-        width: `calc(${slidePercentage}% - ${slidesGap}px)`,
-        transform: `translateX(calc(${currentPage * slidesPerPage * -100}% - ${
-          gap * currentPage * slidesPerPage
-        }px))`,
-      }
-    }
+  const transitionStrategy = transitionStrategies[transition]
 
-    // vertical
-    return {
-      height: `calc(${slidePercentage}% - ${slidesGap}px)`,
-      transform: `translateY(calc(${currentPage * slidesPerPage * -100}% - ${
-        gap * currentPage * slidesPerPage
-      }px))`,
-    }
-  }
-
-  // fade
-  const isActive = index * slidesPerPage === currentPage
-
-  return {
-    position: 'absolute',
-    inset: 0,
-    opacity: isActive ? 1 : 0,
-    zIndex: isActive ? 1 : 0,
-  }
+  return transitionStrategy({
+    orientation,
+    gap,
+    currentPage,
+    slidesPerPage,
+    slidePercentage,
+    slidesGap,
+    index,
+  })
 }

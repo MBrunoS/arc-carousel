@@ -1,7 +1,8 @@
 import { TouchEvent, useState } from 'react'
+import { Orientation } from '../types'
 
 interface SwipeInput {
-  orientation: 'horizontal' | 'vertical'
+  orientation: Orientation
   onSwipedToPrev: () => void
   onSwipedToNext: () => void
 }

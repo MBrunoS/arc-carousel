@@ -1,8 +1,10 @@
 import React, { createContext, useCallback, useEffect, useRef, useState } from 'react'
 import { useEvents } from './EventsContext'
+import { Orientation, Transition } from '@/components/internal/types'
+import { useSlideStyle } from '@/components/internal/hooks/useSlideStyle'
 
 interface CarouselContextType {
-  orientation: 'horizontal' | 'vertical'
+  orientation: Orientation
   currentPage: number
   setCurrentPage: React.Dispatch<React.SetStateAction<number>>
   next: () => void
@@ -12,7 +14,7 @@ interface CarouselContextType {
   slidesPerPage: number
   initialPage: number
   hasLoop: boolean
-  transition: 'slide' | 'fade'
+  transition: Transition
   transitionDuration: number
   gap: number
   autoplay: boolean
@@ -27,13 +29,13 @@ export const CarouselContext = createContext<CarouselContextType>({} as Carousel
 
 export interface CarouselProviderProps {
   children: React.ReactNode
-  orientation: 'horizontal' | 'vertical'
+  orientation: Orientation
   slideCount: number
   pagesCount: number
   slidesPerPage: number
   initialPage: number
   hasLoop: boolean
-  transition: 'slide' | 'fade'
+  transition: Transition
   transitionDuration: number
   gap: number
   autoplay: boolean
