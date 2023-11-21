@@ -51,8 +51,8 @@ export const CarouselWrapper = forwardRef<HTMLDivElement, CarouselWrapperProps>(
 
     if (transition === 'flip') {
       styles = {
-        ...styleProps,
         ...flipTransitionWrapperStyles,
+        ...styleProps,
         gap: `${gap}px`,
       }
     } else {

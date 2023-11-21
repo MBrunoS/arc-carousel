@@ -1,22 +1,33 @@
 import { CSSProperties } from 'react'
 import { TransitionStrategyProps } from '../types'
 
+// TODO: fix transition to flip properly  when going to a slide
+// that is not adjacent to the current one
 export function flipTransition({
   orientation,
   currentPage,
   slidesPerPage,
-  index,
+  slideIndex,
+  slidePercentage,
+  slidesGap,
+  isActive,
 }: TransitionStrategyProps): CSSProperties {
-  const isPrevious = index * slidesPerPage < currentPage
-  const isNext = index * slidesPerPage > currentPage
+  const positionAdjustment = `calc(${
+    (slideIndex % slidesPerPage) * slidePercentage
+  }% - ${slidesGap}px)`
+  const axis = orientation === 'horizontal' ? 'X' : 'Y'
+
+  const pageIndex = Math.floor(slideIndex / slidesPerPage)
+  const isPreviousPages = pageIndex < currentPage
+  const isNextPages = pageIndex > currentPage
 
   return {
     position: 'absolute',
-    inset: 0,
+    top: orientation === 'horizontal' ? 0 : positionAdjustment,
+    left: orientation === 'horizontal' ? positionAdjustment : 0,
     backfaceVisibility: 'hidden',
-    transform: `rotate${orientation === 'horizontal' ? 'Y' : 'X'}(${
-      isPrevious ? 180 : isNext ? -180 : 0
-    }deg)`,
+    transform: `rotate${axis}(${isPreviousPages ? 180 : isNextPages ? -180 : 0}deg)`,
+    zIndex: isActive ? 1 : 0,
   }
 }
 
