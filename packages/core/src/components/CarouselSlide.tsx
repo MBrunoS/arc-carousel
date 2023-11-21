@@ -27,12 +27,22 @@ export const CarouselSlide = forwardRef<HTMLDivElement, CarouselSlideProps>(
     } = useContext(CarouselContext)
     const { onSlideClick, onPageChangeEnd } = useEvents()
 
-    const style = useSlideStyle({ gap, slidesPerPage, currentPage, orientation, transition, index })
+    const firstSlideOnPage = currentPage * slidesPerPage
+    const lastSlideOnPage = (currentPage + 1) * slidesPerPage - 1
+
+    const isActive = index >= firstSlideOnPage && index <= lastSlideOnPage
+
+    const style = useSlideStyle({
+      gap,
+      slidesPerPage,
+      currentPage,
+      orientation,
+      transition,
+      index,
+      isActive,
+    })
 
     const Comp = asChild ? Slot : 'div'
-
-    const isActive =
-      index >= currentPage * slidesPerPage && index < (currentPage + 1) * slidesPerPage
 
     const handleClick = (e: React.MouseEvent<HTMLDivElement>) => {
       onClick?.(e)

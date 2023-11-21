@@ -18,4 +18,5 @@ export type TransitionStrategyProps = {
   index: number
   slidePercentage: number
   slidesGap: number
+  isActive: boolean
 }
