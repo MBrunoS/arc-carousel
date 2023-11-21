@@ -8,7 +8,7 @@ type UseSlideStyleProps = {
   gap: number
   currentPage: number
   slidesPerPage: number
-  index: number
+  slideIndex: number
   isActive: boolean
 }
 
@@ -18,7 +18,7 @@ export function useSlideStyle({
   gap,
   currentPage,
   slidesPerPage,
-  index,
+  slideIndex,
   isActive,
 }: UseSlideStyleProps): CSSProperties {
   const slidePercentage = 100 / slidesPerPage
@@ -33,7 +33,7 @@ export function useSlideStyle({
     slidesPerPage,
     slidePercentage,
     slidesGap,
-    index,
+    slideIndex,
     isActive,
   })
 

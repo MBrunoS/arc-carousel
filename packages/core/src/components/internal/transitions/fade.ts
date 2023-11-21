@@ -2,14 +2,16 @@ import { CSSProperties } from 'react'
 import { TransitionStrategyProps } from '../types'
 
 export function fadeTransition({
-  index,
+  slideIndex,
   slidePercentage,
   slidesPerPage,
   slidesGap,
   isActive,
   orientation,
 }: TransitionStrategyProps): CSSProperties {
-  const positionAdjustment = `calc(${(index % slidesPerPage) * slidePercentage}% - ${slidesGap}px)`
+  const positionAdjustment = `calc(${
+    (slideIndex % slidesPerPage) * slidePercentage
+  }% - ${slidesGap}px)`
 
   return {
     position: 'absolute',

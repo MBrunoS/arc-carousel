@@ -7,12 +7,12 @@ import { useEvents } from '@/context/EventsContext'
 import { useSwipe } from './internal/hooks/useSwipe'
 
 export interface CarouselSlideProps extends HTMLAttributes<HTMLDivElement> {
-  index?: number
+  slideIndex?: number
   asChild?: boolean
 }
 
 export const CarouselSlide = forwardRef<HTMLDivElement, CarouselSlideProps>(
-  ({ index = 0, asChild, className, onClick, onFocus, style: styleProps, ...props }, ref) => {
+  ({ slideIndex = 0, asChild, className, onClick, onFocus, style: styleProps, ...props }, ref) => {
     const {
       slideCount,
       slidesPerPage,
@@ -30,7 +30,7 @@ export const CarouselSlide = forwardRef<HTMLDivElement, CarouselSlideProps>(
     const firstSlideOnPage = currentPage * slidesPerPage
     const lastSlideOnPage = (currentPage + 1) * slidesPerPage - 1
 
-    const isActive = index >= firstSlideOnPage && index <= lastSlideOnPage
+    const isActive = slideIndex >= firstSlideOnPage && slideIndex <= lastSlideOnPage
 
     const style = useSlideStyle({
       gap,
@@ -38,7 +38,7 @@ export const CarouselSlide = forwardRef<HTMLDivElement, CarouselSlideProps>(
       currentPage,
       orientation,
       transition,
-      index,
+      slideIndex,
       isActive,
     })
 
@@ -46,7 +46,7 @@ export const CarouselSlide = forwardRef<HTMLDivElement, CarouselSlideProps>(
 
     const handleClick = (e: React.MouseEvent<HTMLDivElement>) => {
       onClick?.(e)
-      onSlideClick?.(index, e)
+      onSlideClick?.(slideIndex, e)
     }
 
     const touchHandlers = useSwipe({
@@ -62,7 +62,7 @@ export const CarouselSlide = forwardRef<HTMLDivElement, CarouselSlideProps>(
 
     const handleFocus: React.FocusEventHandler<HTMLDivElement> = (e) => {
       if (!isActive) {
-        setCurrentPage(Math.floor(index / slidesPerPage))
+        setCurrentPage(Math.floor(slideIndex / slidesPerPage))
       }
       onFocus?.(e)
     }
@@ -72,14 +72,14 @@ export const CarouselSlide = forwardRef<HTMLDivElement, CarouselSlideProps>(
         className={cn('arc-h-full arc-flex-shrink-0 arc-transition', className)}
         style={{ ...styleProps, ...style, transitionDuration: `${transitionDuration}ms` }}
         ref={ref}
-        data-arc-index={index}
+        data-arc-index={slideIndex}
         data-arc-is-active={isActive}
         onClick={handleClick}
         onTransitionEnd={handleTransitionEnd}
         onFocus={handleFocus}
         role="group"
         aria-roledescription="slide"
-        aria-label={`${index + 1} of ${slideCount}`}
+        aria-label={`${slideIndex + 1} of ${slideCount}`}
         {...touchHandlers}
         {...props}
       />
