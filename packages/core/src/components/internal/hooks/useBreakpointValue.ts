@@ -10,14 +10,18 @@ const BREAKPOINTS_SIZES = {
   '2xl': 1536,
 } as const
 
-export function useBreakpointValue<T>(breakpoints: Record<Breakpoints, T>): T {
+type BreakpointsMap<T> = Partial<Record<Breakpoints, T>> & {
+  base: T
+}
+
+export function useBreakpointValue<T>(breakpoints: BreakpointsMap<T>): T {
   const [currentBreakpoint, setCurrentBreakpoint] = useState<Breakpoints>('base')
 
   useEffect(() => {
     const handleResize = () => {
       const width = window.innerWidth
 
-      const breakpoint = Object.keys(BREAKPOINTS_SIZES)
+      const breakpoint = Object.keys(breakpoints)
         .reverse()
         .find((key) => width >= BREAKPOINTS_SIZES[key as Breakpoints]) as Breakpoints
 
@@ -33,5 +37,5 @@ export function useBreakpointValue<T>(breakpoints: Record<Breakpoints, T>): T {
     }
   }, [])
 
-  return breakpoints[currentBreakpoint]
+  return breakpoints[currentBreakpoint] as T
 }
