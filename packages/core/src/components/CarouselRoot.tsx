@@ -1,16 +1,18 @@
 import { HTMLAttributes, forwardRef } from 'react'
 import { CarouselProvider } from 'src/context/CarouselContext'
 import { Slot } from '@radix-ui/react-slot'
-import { cn, countGrandChildrenOfType, filterChildren } from '@/lib/utils'
+import { countGrandChildrenOfType, filterChildren } from '@/lib/utils'
 import { CarouselWrapper } from './CarouselWrapper'
 import { CarouselSlide } from './CarouselSlide'
 import { Events } from '../types/Events'
 import { EventsProvider } from '@/context/EventsContext'
 import { Orientation, Transition } from './internal/types'
+import { Breakpoints } from '@/types/Breakpoints'
+import { useBreakpointValue } from './internal/hooks/useBreakpointValue'
 
 export interface CarouselRootProps extends HTMLAttributes<HTMLDivElement>, Events {
   orientation?: Orientation
-  slidesPerPage?: number
+  slidesPerPage?: number | Record<Breakpoints, number>
   initialPage?: number
   hasLoop?: boolean
   asChild?: boolean
@@ -53,6 +55,11 @@ export const CarouselRoot = forwardRef<HTMLDivElement, CarouselRootProps>(
     const wrapper = wrappers[0]
 
     const slideCount = countGrandChildrenOfType(wrapper, CarouselSlide)
+
+    if (typeof slidesPerPage !== 'number') {
+      slidesPerPage = useBreakpointValue(slidesPerPage)
+    }
+
     const pagesCount = Math.ceil(slideCount / slidesPerPage)
 
     return (
