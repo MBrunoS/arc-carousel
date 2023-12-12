@@ -15,7 +15,7 @@ export function flipTransition({
   const positionAdjustment = `calc(${
     (slideIndex % slidesPerPage) * slidePercentage
   }% - ${slidesGap}px)`
-  const axis = orientation === 'horizontal' ? 'X' : 'Y'
+  const axis = orientation === 'horizontal' ? 'Y' : 'X'
 
   const pageIndex = Math.floor(slideIndex / slidesPerPage)
   const isPreviousPages = pageIndex < currentPage
