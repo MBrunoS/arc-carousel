@@ -22,10 +22,26 @@ Specifies the orientation of the carousel, either horizontal or vertical.
 
 ### slidesPerPage
 
-- Type: `number`
+- Type: `number | Record<'base' | 'sm' | 'md' | 'lg' | 'xl' | '2xl', number>`
 - Default: `1`
 
-Determines the number of slides displayed on a single page of the carousel.
+Determines the number of slides displayed on a single page of the carousel. The number of slides can be specified as a single number or an object containing breakpoints for different screen sizes.
+
+The breakpoints are based on the [Tailwind CSS breakpoints](https://tailwindcss.com/docs/responsive-design) and are used to determine the number of slides displayed on a single page for different screen sizes.
+
+For example, if you want to display 2 slides per page on small screens and 3 slides per page on medium screens, you can do the following:
+
+```jsx
+<Carousel.Root
+  slidesPerPage={{
+    base: 1,
+    sm: 2,
+    md: 3,
+  }}
+>
+  {/* Your carousel content goes here */}
+</Carousel.Root>
+```
 
 ### initialPage
 

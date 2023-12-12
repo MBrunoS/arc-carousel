@@ -22,10 +22,26 @@ Especifica a orientação do carrossel, seja horizontal ou vertical.
 
 ### slidesPerPage
 
-- Tipo: `number`
+- Tipo: `number | Record<'base' | 'sm' | 'md' | 'lg' | 'xl' | '2xl', number>`
 - Padrão: `1`
 
-Determina o número de slides exibidos em uma única página do carrossel.
+Determina o número de slides exibidos em uma única página do carrossel. O número de slides pode ser especificado como um único número ou um objeto contendo breakpoints para diferentes tamanhos de tela.
+
+Os breakpoints são baseados nos do [Tailwind CSS](https://tailwindcss.com/docs/responsive-design) e são usados para determinar o número de slides exibidos em uma única página para diferentes tamanhos de tela.
+
+Por exemplo, se você quiser exibir 2 slides por página em telas pequenas e 3 slides por página em telas médias, você pode fazer o seguinte:
+
+```jsx
+<Carousel.Root
+  slidesPerPage={{
+    base: 1,
+    sm: 2,
+    md: 3,
+  }}
+>
+  {/* O conteúdo do seu carrossel vai aqui */}
+</Carousel.Root>
+```
 
 ### initialPage
 
