@@ -3,6 +3,7 @@ import { CarouselPagination } from './CarouselPagination'
 import { CarouselPaginationItem } from './CarouselPaginationItem'
 import { CarouselPlayPauseButton } from './CarouselPlayPauseButton'
 import { CarouselPrevButton } from './CarouselPrevButton'
+import { CarouselProgress } from './CarouselProgress'
 import { CarouselRoot } from './CarouselRoot'
 import { CarouselSlide } from './CarouselSlide'
 import { CarouselWrapper } from './CarouselWrapper'
@@ -16,4 +17,5 @@ export const Carousel = {
   PaginationItem: CarouselPaginationItem,
   Wrapper: CarouselWrapper,
   Slide: CarouselSlide,
+  Progress: CarouselProgress,
 }
