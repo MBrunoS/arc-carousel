@@ -27,7 +27,7 @@ export const CarouselProgress = forwardRef<HTMLDivElement, CarouselProgressProps
         {render ? (
           render(progress)
         ) : (
-          <div
+          <progress
             className="arc-h-full arc-bg-black arc-transition-[width] arc-duration-150 arc-ease-in-out"
             style={{ width: `${progress}%` }}
           />
