@@ -9,7 +9,8 @@ describe('useSlideStyle', () => {
       gap: 10,
       currentPage: 0,
       slidesPerPage: 4,
-      index: 0,
+      slideIndex: 0,
+      isActive: true,
     }
 
     it('should return the correct horizontal slide styles', () => {
@@ -101,34 +102,39 @@ describe('useSlideStyle', () => {
       gap: 0,
       currentPage: 0,
       slidesPerPage: 1,
-      index: 0,
+      slideIndex: 0,
+      isActive: true,
     }
 
     it('should return the correct active styles', () => {
       const expectedStyles = {
         position: 'absolute',
-        inset: 0,
+        top: 0,
+        left: 'calc(0% - 0px)',
         opacity: 1,
         zIndex: 1,
+        width: 'calc(100% - 0px)',
       }
 
       expect(useSlideStyle(props)).toEqual(expectedStyles)
     })
 
     it('should return the correct inactive styles', () => {
-      const propsWithIndex = {
+      const propsWithInactive = {
         ...props,
-        index: 10,
+        isActive: false,
       }
 
       const expectedStyles = {
         position: 'absolute',
-        inset: 0,
+        top: 0,
+        left: 'calc(0% - 0px)',
         opacity: 0,
         zIndex: 0,
+        width: 'calc(100% - 0px)',
       }
 
-      expect(useSlideStyle(propsWithIndex)).toEqual(expectedStyles)
+      expect(useSlideStyle(propsWithInactive)).toEqual(expectedStyles)
     })
   })
 })
