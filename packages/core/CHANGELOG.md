@@ -1,5 +1,11 @@
 # arc-carousel
 
+## 1.3.0
+
+### Minor Changes
+
+- Add progress component
+
 ## 1.2.1
 
 ### Patch Changes
