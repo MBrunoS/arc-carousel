@@ -1,5 +1,13 @@
 # arc-carousel
 
+## 1.2.0
+
+### Minor Changes
+
+- Fix fade transition not working with multiple slides per page
+- Add flip transition (still with some issues when changing to non-adjacent slides)
+- Add responsive breakpoints to slidesPerPage prop
+
 ## 1.1.0
 
 ### Minor Changes
