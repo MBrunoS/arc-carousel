@@ -6,14 +6,15 @@ import { CarouselWrapper } from './CarouselWrapper'
 import { CarouselSlide } from './CarouselSlide'
 import { Events } from '../types/Events'
 import { EventsProvider } from '@/context/EventsContext'
+import { Orientation, Transition } from './internal/types'
 
 export interface CarouselRootProps extends HTMLAttributes<HTMLDivElement>, Events {
-  orientation?: 'horizontal' | 'vertical'
+  orientation?: Orientation
   slidesPerPage?: number
   initialPage?: number
   hasLoop?: boolean
   asChild?: boolean
-  transition?: 'slide' | 'fade'
+  transition?: Transition
   transitionDuration?: number
   gap?: number
   autoplay?: boolean

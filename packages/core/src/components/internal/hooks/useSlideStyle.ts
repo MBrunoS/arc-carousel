@@ -1,12 +1,15 @@
 import { CSSProperties } from 'react'
+import { transitionStrategies } from '../transitions'
+import { Orientation, Transition } from '../types'
 
 type UseSlideStyleProps = {
-  orientation: 'horizontal' | 'vertical'
-  transition: 'slide' | 'fade'
+  orientation: Orientation
+  transition: Transition
   gap: number
   currentPage: number
   slidesPerPage: number
-  index: number
+  slideIndex: number
+  isActive: boolean
 }
 
 export function useSlideStyle({
@@ -15,37 +18,35 @@ export function useSlideStyle({
   gap,
   currentPage,
   slidesPerPage,
-  index,
+  slideIndex,
+  isActive,
 }: UseSlideStyleProps): CSSProperties {
   const slidePercentage = 100 / slidesPerPage
   const slidesGap = (slidesPerPage * gap - gap) / slidesPerPage // adjustment for the gap between slides
 
-  if (transition === 'slide') {
-    if (orientation === 'horizontal') {
-      return {
-        width: `calc(${slidePercentage}% - ${slidesGap}px)`,
-        transform: `translateX(calc(${currentPage * slidesPerPage * -100}% - ${
-          gap * currentPage * slidesPerPage
-        }px))`,
-      }
-    }
+  const transitionStrategy = transitionStrategies[transition]
 
-    // vertical
+  const transitionStyles = transitionStrategy({
+    orientation,
+    gap,
+    currentPage,
+    slidesPerPage,
+    slidePercentage,
+    slidesGap,
+    slideIndex,
+    isActive,
+  })
+
+  if (orientation === 'horizontal') {
     return {
-      height: `calc(${slidePercentage}% - ${slidesGap}px)`,
-      transform: `translateY(calc(${currentPage * slidesPerPage * -100}% - ${
-        gap * currentPage * slidesPerPage
-      }px))`,
+      width: `calc(${slidePercentage}% - ${slidesGap}px)`,
+      ...transitionStyles,
     }
   }
 
-  // fade
-  const isActive = index * slidesPerPage === currentPage
-
+  // vertical
   return {
-    position: 'absolute',
-    inset: 0,
-    opacity: isActive ? 1 : 0,
-    zIndex: isActive ? 1 : 0,
+    height: `calc(${slidePercentage}% - ${slidesGap}px)`,
+    ...transitionStyles,
   }
 }

@@ -1,23 +1,35 @@
 import { CarouselContext } from '@/context/CarouselContext'
 import { cn } from '@/lib/utils'
 import { Slot } from '@radix-ui/react-slot'
-import React, { HTMLAttributes, forwardRef, useContext } from 'react'
+import React, { CSSProperties, HTMLAttributes, forwardRef, useContext } from 'react'
+import { flipTransitionWrapperStyles } from './internal/transitions/flip'
 
 export interface CarouselWrapperProps extends HTMLAttributes<HTMLDivElement> {
   asChild?: boolean
 }
 
 export const CarouselWrapper = forwardRef<HTMLDivElement, CarouselWrapperProps>(
-  ({ children, asChild, className, onMouseEnter, onMouseLeave, ...props }, ref) => {
-    const { orientation, gap, isAutoplaying, isPaused, stopAutoplay, startAutoplay, autoplay } =
-      useContext(CarouselContext)
+  (
+    { children, asChild, className, onMouseEnter, onMouseLeave, style: styleProps, ...props },
+    ref,
+  ) => {
+    const {
+      transition,
+      orientation,
+      gap,
+      isAutoplaying,
+      isPaused,
+      stopAutoplay,
+      startAutoplay,
+      autoplay,
+    } = useContext(CarouselContext)
 
     const Comp = asChild ? Slot : 'div'
 
     const mappedChildren = React.Children.map(children, (child, index) => {
       return React.cloneElement(child as React.ReactElement, {
         key: index,
-        index,
+        slideIndex: index,
       })
     })
 
@@ -35,6 +47,21 @@ export const CarouselWrapper = forwardRef<HTMLDivElement, CarouselWrapperProps>(
       onMouseLeave?.(e)
     }
 
+    let styles: CSSProperties = {}
+
+    if (transition === 'flip') {
+      styles = {
+        ...flipTransitionWrapperStyles,
+        ...styleProps,
+        gap: `${gap}px`,
+      }
+    } else {
+      styles = {
+        ...styleProps,
+        gap: `${gap}px`,
+      }
+    }
+
     return (
       <Comp
         className={cn(
@@ -42,7 +69,7 @@ export const CarouselWrapper = forwardRef<HTMLDivElement, CarouselWrapperProps>(
           orientation === 'vertical' ? 'arc-flex-col' : 'arc-flex-row',
           className,
         )}
-        style={{ gap: `${gap}px` }}
+        style={styles}
         ref={ref}
         role="region"
         aria-atomic="false"
