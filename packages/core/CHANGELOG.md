@@ -1,5 +1,11 @@
 # arc-carousel
 
+## 1.2.1
+
+### Patch Changes
+
+- - Enable optional breakpoints in slidesPerPage prop
+
 ## 1.2.0
 
 ### Minor Changes
