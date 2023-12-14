@@ -4,7 +4,7 @@ import 'arc-carousel/styles.css'
 export default function CarouselProgress({ images }) {
   return (
     <Carousel.Root
-      className="relative mt-12 mb-48 md:mx-20 lg:mx-40 h-96"
+      className="relative h-48 mt-12 mb-32 md:mb-40 md:mx-20 lg:mx-40 md:h-96"
       transition="fade"
       autoplay
       hasLoop
