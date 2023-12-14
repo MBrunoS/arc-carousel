@@ -1,0 +1,31 @@
+---
+import SpotlightGrid from "./SpotlightGrid.jsx";
+
+const { lang = 'en'} = Astro.props
+
+const cards = [
+  {
+    title: lang === 'en' ? 'Highly Customizable' : 'Altamente personalizável',
+    description: lang === 'en' ?
+      "Unleash your creativity with our carousel's unparalleled customization. We made sure to make our components extensible so you can customize them to your needs."
+      : "Libere sua criatividade com a personalização incomparável do nosso carrossel. Certificamo-nos de tornar nossos componentes extensíveis para que você possa personalizá-los de acordo com suas necessidades.",
+    icon: 'pencil'
+  },
+  {
+    title: lang === 'en' ? 'Mobile Support' : 'Suporte a dispositivos móveis',
+    description: lang === 'en' ?
+      "Deliver a consistent and engaging experience across smartphones and tablets. With Arc, responsiveness is as simple as assigning a prop."
+      : "Ofereça uma experiência consistente e envolvente em smartphones e tablets. Com o Arc, a responsividade é tão simples quanto atribuir uma prop.",
+    icon: 'mobile'
+  },
+  {
+    title: lang === 'en' ? 'Accessibility' : 'Acessibilidade',
+    description: lang === 'en' ?
+      "We believe that accessibility is a right, not a privilege. Arc is built with accessibility in mind, and we're constantly working to improve it."
+      : "Acreditamos que a acessibilidade é um direito, não um privilégio. O Arc é construído com acessibilidade em mente e estamos constantemente trabalhando para melhorá-lo.",
+    icon: 'a11y'
+  }
+]
+---
+
+<SpotlightGrid className="mx-auto mt-10 gap-7 sm:grid-cols-2 lg:grid-cols-3" cards={cards} client:load />

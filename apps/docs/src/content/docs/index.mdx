@@ -15,8 +15,25 @@ hero:
       icon: external
 ---
 
-import Carousel from '../../components/Carousel.jsx'
+import Features from '../../components/Features.astro'
+import Carousel from '../../components/Carousel.astro'
+import CallToAction from '../../components/CallToAction.astro'
+
+## Features
+
+<Features />
 
 ## Next Generation Carousels
 
-<Carousel client:load />
+<Carousel variant="simple" />
+
+<Carousel variant="progress" />
+
+<section className="flex justify-center">
+  <CallToAction
+    variant="primary"
+    text="Start using Arc Carousel"
+    link="/quick-start/getting-started/"
+    icon={{ name: 'right-arrow' }}
+  />
+</section>

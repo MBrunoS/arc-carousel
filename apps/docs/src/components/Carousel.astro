@@ -1,0 +1,34 @@
+---
+import CarouselSimple from './CarouselSimple.jsx'
+import CarouselProgress from './CarouselProgress.jsx'
+const {variant, lang = 'en'} = Astro.props
+
+const images = [
+  {
+    src: "https://images.unsplash.com/photo-1538947151057-dfe933d688d1?crop=entropy&w=700&fit=crop",
+    alt: lang === 'en' ? 'Blue mountains during the day' : 'Montanhas azuis durante o dia'
+  },
+  {
+    src: "https://images.unsplash.com/photo-1483401757487-2ced3fa77952?crop=entropy&w=700&fit=crop",
+    alt: lang === 'en' ? 'Night view showing stars' : 'Vista da noite mostrando estrelas'
+  },
+  {
+    src: "https://images.unsplash.com/photo-1441906363162-903afd0d3d52?crop=entropy&w=700&fit=crop",
+    alt: lang === 'en' ? 'Water body' : "Corpo d'água"
+  },
+  {
+    src:"https://images.unsplash.com/photo-1429041966141-44d228a42775?crop=entropy&w=700&fit=crop",
+    alt: lang === 'en' ? 'Golden Gate Bridge, San Francisco California' : 'Golden Gate Bridge, São Francisco Califórnia'
+  },
+  {
+    src:"https://images.unsplash.com/photo-1559160581-d3ad53f7b288?crop=entropy&w=700&fit=crop",
+    alt: lang === 'en' ? 'Desert during the day' : 'Deserto durante o dia'
+  },
+  {
+    src:"https://images.unsplash.com/photo-1520942702018-0862200e6873?crop=entropy&w=700&fit=crop",
+    alt: lang === 'en' ? 'View of the beach during the day' : 'Vista da praia durante o dia'
+  }  
+]
+---
+
+{ variant === 'simple' ? <CarouselSimple images={images} client:load /> : <CarouselProgress images={images} client:load /> }

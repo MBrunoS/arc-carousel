@@ -1,0 +1,23 @@
+---
+import { Icon } from '@astrojs/starlight/components'
+
+interface Props {
+  text: string
+  link: string
+  variant: string
+  icon: {
+    name: string
+  }
+}
+
+const props = Astro.props
+---
+
+<a
+  target={props.icon?.name === "external" ? "_blank" : ""}
+  href={props.link}
+  class={`inline-flex items-center px-5 py-4 text-center no-underline transition ${ props.variant === 'primary' ? "!text-white rounded-full dark:!text-gray-900 bg-accent-600 hover:bg-accent-600/80 dark:bg-accent-200 dark:hover:bg-accent-200/80" : "!text-gray-900 hover:!text-accent-600 dark:!text-white dark:!hover:text-accent-200"}`}
+>
+  { props.text }
+  { props.icon?.name && <Icon name={props.icon.name as any} class="!mt-0 ml-2" size="1.5rem" /> }
+</a>

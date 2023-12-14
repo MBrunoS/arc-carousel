@@ -8,6 +8,11 @@ export default defineConfig({
   integrations: [
     starlight({
       title: 'Arc Carousel',
+      logo: {
+        dark: './src/assets/logo-dark.svg',
+        light: './src/assets/logo-light.svg',
+        replacesTitle: true,
+      },
       social: {
         github: 'https://github.com/MBrunoS/arc-carousel',
       },
@@ -56,6 +61,9 @@ export default defineConfig({
         'pt-br': {
           label: 'Português',
         },
+      },
+      components: {
+        Hero: './src/components/Hero.astro',
       },
     }),
     react(),

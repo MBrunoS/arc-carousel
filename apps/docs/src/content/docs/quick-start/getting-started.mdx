@@ -3,6 +3,8 @@ title: Getting Started
 description: How to start with the Arc Carousel library.
 ---
 
+import { Tabs, TabItem } from '@astrojs/starlight/components'
+
 Welcome to Arc Carousel, a powerful and flexible React library that will help you create stunning, interactive carousels for your web projects. In this guide, we'll walk you through the steps to get started with the library and have your carousels up and running in no time.
 
 ## Prerequisites
@@ -13,22 +15,35 @@ Arc Carousel is a React component library. To use it effectively, you should hav
 
 Before you can begin using Arc Carousel, you need to install it into your project. You can do this using the package manager of your choice.
 
-```bash
-# Using npm
-npm install arc-carousel
+<Tabs>
+  <TabItem label="npm">
+  
+  ```sh
+  npm install arc-carousel
+  ```
 
-# Using yarn
-yarn add arc-carousel
-
-# Using pnpm
-pnpm add arc-carousel
-```
+  </TabItem>
+  <TabItem label="yarn">
+  
+  ```sh
+  yarn add arc-carousel
+  ```
+  
+  </TabItem>
+  <TabItem label="pnpm">
+  
+  ```sh
+  pnpm add arc-carousel
+  ```
+  
+  </TabItem>
+</Tabs>
 
 ## Usage
 
 Once you've installed Arc Carousel, you can import it into your React application and start using it.
 
-```jsx
+```jsx title="MyCarousel.jsx"
 import React from 'react'
 import { Carousel } from 'arc-carousel'
 import 'arc-carousel/styles.css' // Import the default styles
@@ -67,6 +82,7 @@ function MyCarousel() {
     <Carousel.Root
       orientation="horizontal"
       slidesPerPage={1}
+      // slidesPerPage={{ base: 1, sm: 2, md: 3, lg: 4, xl: 5, '2xl': 6 }} // responsive
       initialPage={0}
       transition="slide"
       transitionDuration={300}

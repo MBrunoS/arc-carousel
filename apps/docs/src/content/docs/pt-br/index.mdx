@@ -15,8 +15,25 @@ hero:
       icon: external
 ---
 
-import Carousel from '../../../components/Carousel.jsx'
+import Features from '../../../components/Features.astro'
+import Carousel from '../../../components/Carousel.astro'
+import CallToAction from '../../../components/CallToAction.astro'
 
-## Carrosséis de próxima geração
+## Características
 
-<Carousel client:load />
+<Features lang="pt" />
+
+## Carroséis de próxima geração
+
+<Carousel variant="simple" lang="pt-br" />
+
+<Carousel variant="progress" lang="pt-br" />
+
+<section className="flex justify-center">
+  <CallToAction
+    variant="primary"
+    text="Comece a usar o Arc Carousel"
+    link="/pt-br/quick-start/getting-started/"
+    icon={{ name: 'right-arrow' }}
+  />
+</section>
