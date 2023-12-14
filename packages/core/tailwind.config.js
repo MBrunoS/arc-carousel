@@ -8,5 +8,4 @@ export default {
   corePlugins: {
     preflight: false,
   },
-  prefix: 'arc-',
 }

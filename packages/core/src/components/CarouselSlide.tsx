@@ -69,7 +69,7 @@ export const CarouselSlide = forwardRef<HTMLDivElement, CarouselSlideProps>(
 
     return (
       <Comp
-        className={cn('arc-h-full arc-flex-shrink-0 arc-transition', className)}
+        className={cn('h-full flex-shrink-0 transition', className)}
         style={{ ...styleProps, ...style, transitionDuration: `${transitionDuration}ms` }}
         ref={ref}
         data-arc-index={slideIndex}

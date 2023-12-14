@@ -19,11 +19,7 @@ export const CarouselPagination = forwardRef<HTMLDivElement, CarouselPaginationP
 
     return (
       <Comp
-        className={cn(
-          'arc-flex',
-          orientation === 'vertical' ? 'arc-flex-col' : 'arc-flex-row',
-          className,
-        )}
+        className={cn('flex', orientation === 'vertical' ? 'flex-col' : 'flex-row', className)}
         ref={ref}
         {...props}
       >

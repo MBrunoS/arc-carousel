@@ -20,7 +20,7 @@ export const CarouselProgress = forwardRef<HTMLDivElement, CarouselProgressProps
 
     return (
       <Comp
-        className={cn('arc-flex-grow arc-h-1 arc-rounded-full arc-overflow-hidden', className)}
+        className={cn('flex-grow h-1 rounded-full overflow-hidden', className)}
         ref={ref}
         {...props}
       >
@@ -28,7 +28,7 @@ export const CarouselProgress = forwardRef<HTMLDivElement, CarouselProgressProps
           render(progress)
         ) : (
           <progress
-            className="arc-h-full arc-bg-black arc-transition-[width] arc-duration-150 arc-ease-in-out"
+            className="block h-full bg-black transition-[width] duration-150 ease-in-out"
             style={{ width: `${progress}%` }}
           />
         )}

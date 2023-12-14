@@ -65,8 +65,8 @@ export const CarouselWrapper = forwardRef<HTMLDivElement, CarouselWrapperProps>(
     return (
       <Comp
         className={cn(
-          'arc-relative arc-flex arc-w-full arc-h-full arc-overflow-hidden',
-          orientation === 'vertical' ? 'arc-flex-col' : 'arc-flex-row',
+          'relative flex w-full h-full overflow-hidden',
+          orientation === 'vertical' ? 'flex-col' : 'flex-row',
           className,
         )}
         style={styles}

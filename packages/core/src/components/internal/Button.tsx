@@ -12,7 +12,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
     return (
       <Comp
         className={cn(
-          'arc-flex arc-items-center arc-justify-center arc-transition arc-duration-150 arc-ease-in-out arc-rounded-full',
+          'flex items-center justify-center transition duration-150 ease-in-out rounded-full',
           className,
         )}
         ref={ref}
