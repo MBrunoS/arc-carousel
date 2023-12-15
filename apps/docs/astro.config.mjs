@@ -49,6 +49,7 @@ export default defineConfig({
             { label: 'Carousel.PrevButton', link: '/reference/carousel-prev-button/' },
             { label: 'Carousel.NextButton', link: '/reference/carousel-next-button/' },
             { label: 'Carousel.PlayPauseButton', link: '/reference/carousel-play-pause-button/' },
+            { label: 'Carousel.Progress', link: '/reference/carousel-progress/' },
           ],
         },
       ],
