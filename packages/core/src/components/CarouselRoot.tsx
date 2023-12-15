@@ -7,18 +7,18 @@ import { CarouselSlide } from './CarouselSlide'
 import { Events } from '../types/Events'
 import { EventsProvider } from '@/context/EventsContext'
 import { Orientation, Transition } from './internal/types'
-import { Breakpoints } from '@/types/Breakpoints'
+import { ResponsiveProp } from '@/types/Breakpoints'
 import { useBreakpointValue } from './internal/hooks/useBreakpointValue'
 
 export interface CarouselRootProps extends HTMLAttributes<HTMLDivElement>, Events {
   orientation?: Orientation
-  slidesPerPage?: number | Record<Breakpoints, number>
+  slidesPerPage?: number | ResponsiveProp<number>
   initialPage?: number
   hasLoop?: boolean
   asChild?: boolean
   transition?: Transition
   transitionDuration?: number
-  gap?: number
+  gap?: number | ResponsiveProp<number>
   autoplay?: boolean
   autoplayInterval?: number
 }
@@ -58,6 +58,10 @@ export const CarouselRoot = forwardRef<HTMLDivElement, CarouselRootProps>(
 
     if (typeof slidesPerPage !== 'number') {
       slidesPerPage = useBreakpointValue(slidesPerPage)
+    }
+
+    if (typeof gap !== 'number') {
+      gap = useBreakpointValue(gap)
     }
 
     const pagesCount = Math.ceil(slideCount / slidesPerPage)

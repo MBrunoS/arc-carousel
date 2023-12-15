@@ -1,4 +1,4 @@
-import { Breakpoints } from '@/types/Breakpoints'
+import { Breakpoints, ResponsiveProp } from '@/types/Breakpoints'
 import { useEffect, useState } from 'react'
 
 const BREAKPOINTS_SIZES = {
@@ -10,11 +10,7 @@ const BREAKPOINTS_SIZES = {
   '2xl': 1536,
 } as const
 
-type BreakpointsMap<T> = Partial<Record<Breakpoints, T>> & {
-  base: T
-}
-
-export function useBreakpointValue<T>(breakpoints: BreakpointsMap<T>): T {
+export function useBreakpointValue<T>(breakpoints: ResponsiveProp<T>): T {
   const [currentBreakpoint, setCurrentBreakpoint] = useState<Breakpoints>('base')
 
   useEffect(() => {
