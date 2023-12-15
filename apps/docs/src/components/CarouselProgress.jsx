@@ -19,13 +19,9 @@ export default function CarouselProgress({ images }) {
 
       <div className="flex items-center justify-center w-full gap-4">
         <Carousel.Progress
-          className="bg-accent-600/30 dark:bg-accent-200/30"
-          render={(progress) => (
-            <progress
-              className="block h-full transition-[width] rounded-full [&::-webkit-progress-bar]:bg-accent-600 dark:[&::-webkit-progress-bar]:bg-accent-200 [&::-moz-progress-bar]:bg-accent-600 dark:[&::-moz-progress-bar]:bg-accent-200"
-              style={{ width: `${progress}%` }}
-            />
-          )}
+          className="[&::-webkit-progress-bar]:rounded-full [&::-webkit-progress-value]:rounded-full [&::-moz-progress-bar]:rounded-full [&::-moz-progress-value]:rounded-full
+            [&::-webkit-progress-bar]:bg-accent-600/30 [&::-webkit-progress-value]:bg-accent-600 dark:[&::-webkit-progress-bar]:bg-accent-200/30 dark:[&::-webkit-progress-value]:bg-accent-200
+          [&::-moz-progress-bar]:bg-accent-600/30 [&::-moz-progress-value]:bg-accent-600 dark:[&::-moz-progress-bar]:bg-accent-200/30 dark:[&::-moz-progress-value]:bg-accent-200"
         />
         <Carousel.PlayPauseButton className="!mt-0 p-2 bg-transparent cursor-pointer text-accent-600 hover:text-accent-600/60 dark:text-accent-200 dark:hover:text-accent-200/60" />
       </div>
