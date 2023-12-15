@@ -3,36 +3,30 @@ import { cn } from '@/lib/utils'
 import { Slot } from '@radix-ui/react-slot'
 import { HTMLAttributes, forwardRef, useContext } from 'react'
 
-export interface CarouselProgressProps extends HTMLAttributes<HTMLDivElement> {
+export interface CarouselProgressProps extends HTMLAttributes<HTMLProgressElement> {
   asChild?: boolean
-  render?: (progress: number) => JSX.Element
 }
 
-export const CarouselProgress = forwardRef<HTMLDivElement, CarouselProgressProps>(
-  ({ asChild, render, className, ...props }, ref) => {
-    const { pagesCount, currentPage } = useContext(CarouselContext)
+export const CarouselProgress = forwardRef<HTMLProgressElement, CarouselProgressProps>(
+  ({ asChild, className, ...props }, ref) => {
+    const { pagesCount, currentPage, orientation } = useContext(CarouselContext)
 
     if (pagesCount <= 1) return null
 
-    const progress = ((currentPage + 1) / pagesCount) * 100
-
-    const Comp = asChild ? Slot : 'div'
+    const Comp = asChild ? Slot : 'progress'
 
     return (
       <Comp
-        className={cn('flex-grow h-1 rounded-full overflow-hidden', className)}
+        className={cn(
+          'rounded-full h-1 w-full [&::-webkit-progress-value]:transition-[width] [&::-moz-progress-value]:transition-[width] duration-150 ease-in-out',
+          orientation === 'vertical' ? 'rotate-90 origin-left' : '',
+          className,
+        )}
+        max={pagesCount}
+        value={currentPage + 1}
         ref={ref}
         {...props}
-      >
-        {render ? (
-          render(progress)
-        ) : (
-          <progress
-            className="block h-full bg-black transition-[width] duration-150 ease-in-out"
-            style={{ width: `${progress}%` }}
-          />
-        )}
-      </Comp>
+      />
     )
   },
 )
