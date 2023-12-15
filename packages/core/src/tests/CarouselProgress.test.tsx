@@ -37,29 +37,23 @@ describe('CarouselProgress', () => {
     expect(screen.queryByRole('progressbar')).toBeNull()
   })
 
-  it('should render with correct width if pagesCount is more than 1', () => {
+  it('should render with correct value', () => {
     render(
       <CarouselContext.Provider value={providerMockValue}>
         <CarouselProgress />
       </CarouselContext.Provider>,
     )
 
-    const progressBar = screen.getByRole('progressbar')
-    expect(progressBar.style).toEqual(expect.objectContaining({ width: '50%' }))
+    expect(screen.getByRole<HTMLProgressElement>('progressbar').value).toBe(1)
   })
 
-  it('should render custom progress bar if render prop is provided', () => {
-    const renderProp = vi.fn((progress) => (
-      <progress data-testid="custom-progress-bar">{progress}</progress>
-    ))
-
+  it('should render with correct max', () => {
     render(
       <CarouselContext.Provider value={providerMockValue}>
-        <CarouselProgress render={renderProp} />
+        <CarouselProgress />
       </CarouselContext.Provider>,
     )
 
-    expect(renderProp).toHaveBeenCalledWith(50)
-    expect(screen.getByRole('progressbar').textContent).toBe('50')
+    expect(screen.getByRole<HTMLProgressElement>('progressbar').max).toBe(2)
   })
 })
