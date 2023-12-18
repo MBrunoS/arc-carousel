@@ -1,5 +1,12 @@
 # web
 
+## 0.0.8
+
+### Patch Changes
+
+- Updated dependencies
+  - arc-carousel@1.3.1
+
 ## 0.0.7
 
 ### Patch Changes

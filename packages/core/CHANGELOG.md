@@ -1,5 +1,13 @@
 # arc-carousel
 
+## 1.3.1
+
+### Patch Changes
+
+- - Remove 'arc' prefix from class names
+  - Update gap prop to handle responsiveness
+  - Update progress component and handle vertical orientation
+
 ## 1.3.0
 
 ### Minor Changes
